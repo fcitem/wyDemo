@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @注释：通过后台代码模拟请求httpUrl地址
  */
 public class jsonConnect {
-	public String url="http://testapi.yuedu.163.com/book/category.json";     //请求的地址
+	public String url="http://testapi.yuedu.163.com/book/add.json";     //请求的地址
 	URL Url;
 	HttpURLConnection connect=null;
 	OutputStreamWriter out;
