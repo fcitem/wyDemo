@@ -14,19 +14,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @data:2016年11月29日
  * @注释：通过后台代码模拟请求httpUrl地址
  */
-public class jsonConnect {
-	public String url="http://testapi.yuedu.163.com/book/add.json";     //请求的地址
+public class HttpConnect {
+	public String urladdress="http://testapi.yuedu.163.com/book/add.json";     //请求的地址
 	URL Url;
 	HttpURLConnection connect=null;
 	OutputStreamWriter out;
-	public jsonConnect() {
-//		url=url+s;
-		getconnect();
+	private HttpConnect(String url) {
+		this.urladdress=url;
+		this.getconnect();
+	}	
+	public static HttpConnect getHttpConnect(String url){
+		return new HttpConnect(url);
 	}
-	public void getconnect(){
+	private void getconnect(){
 		try {
-			//鍒涘缓杩炴帴
-			Url=new URL(url);
+			Url=new URL(urladdress);
 			connect=(HttpURLConnection) Url.openConnection();
 			connect.setDoOutput(true);      //鏍囧織璁剧疆涓� true锛屾寚绀� 搴旂敤绋嬪簭瑕佷粠 URL杩炴帴璇诲彇鏁版嵁
 			connect.setDoInput(true);
@@ -40,6 +42,9 @@ public class jsonConnect {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public String getUrladdress() {
+		return urladdress;
 	}
 	public void send(Object obj){
 		ObjectMapper mapper=new ObjectMapper();
