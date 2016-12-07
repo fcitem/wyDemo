@@ -13,7 +13,7 @@ public class Md5Url {
 	private final static String  secretKey="qfMX8XnovK9CFHbf";
 	private static long timestamp;
 	private static String md5Url=null;
-	public static long getTimestamp() {
+	public static long getTimestamp() { 
 		return timestamp;
 	}
 	public static void setTimestamp(long timestamp) {

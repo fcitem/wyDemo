@@ -1,4 +1,11 @@
 package com.wyDemo.pro;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 /**
  * @author fengchao
  * @date 2016年12月1日
@@ -11,21 +18,40 @@ public class BookInfo {
 	private int type;       //类别类型，其中0是出版书籍分类类别，1是原创分类类别
 	private StringBuilder description;
 	private BookInfo parent;   //父类别，在选择书籍分类时选择父类别id是无效的,目前云阅读只有两级分类
-	private String title;
-	private String chapterTitle;
-	private StringBuilder chapterDescription;
+	private String title;     //书名
+	private String chapterTitle;    //卷名
+	private StringBuilder chapterDescription;   //卷描述
+	private String sectionTitle;    //章节名字
+	private String sectionDescription;   //章节描述
 	public BookInfo() {
 		setDescription(null);
 		setTitle("大院里的童年");
 		setChapterTitle("前言");
 		setChapterDescription(null);
+		setSectionTitle("丑小鸭");
+		setSectionDescription(null);
 	}
-	
+	public String getSectionTitle() {
+		return sectionTitle;
+	}
+
+	public void setSectionTitle(String sectionTitle) {
+		this.sectionTitle = sectionTitle;
+	}
+
+	public void setSectionDescription(StringBuilder sectionDescription) {
+		Document doc;
+		try {
+			doc = Jsoup.connect("http://localhost:8080/wyDemo/sectionDescription.html").get();
+			this.sectionDescription=doc.toString();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public StringBuilder getDescription() {
 		return description;
 	}
-
-	public void setDescription(StringBuilder description) {
+	public void setDescription(StringBuilder description2) {
 		this.description =new StringBuilder();
 		this.description.append("<html>");
 		description.append("<head>");
@@ -52,7 +78,10 @@ public class BookInfo {
 		this.chapterTitle = chapterTitle;
 	}
 
-	public void setChapterDescription(StringBuilder chapterDescription) {
+	public StringBuilder getChapterDescription() {
+		return chapterDescription;
+	}
+	public void setChapterDescription(StringBuilder chapterDescription2) {
 		this.chapterDescription = new StringBuilder();
 		chapterDescription.append("<html>");
 		chapterDescription.append("<head>");
@@ -102,5 +131,7 @@ public class BookInfo {
 	public void setParent(BookInfo parent) {
 		this.parent = parent;
 	}
-	
+	public static void main(String[] args) {
+		new BookInfo();
+	}
 }
