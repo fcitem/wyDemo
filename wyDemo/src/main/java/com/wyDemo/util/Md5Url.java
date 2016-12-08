@@ -25,13 +25,13 @@ public class Md5Url {
 		builder.append(url);
 		timestamp=System.currentTimeMillis();
 		builder.append("timestamp="+timestamp);
-		builder.append(secretKey);
 		builder.append("consumerKey="+consumerKey);
 		Iterator<String> it=map.keySet().iterator();
 		while(it.hasNext()){
 			String key=it.next();
 			builder.append(key).append("=").append(map.get(key));
 		}
+		builder.append(secretKey);
 		try {
 //			md5=MessageDigest.getInstance("MD5");
 			String encodeUrl=(URLEncoder.encode(builder.toString(), "UTF-8"));

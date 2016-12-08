@@ -175,9 +175,9 @@ public class Mytest {
 		HashMap<String,Object> map=new HashMap<String,Object>();
 		map.put("title", chapter.getTitle());
 		map.put("description", chapter.getDescription());
-		map.put("bookId", chapter.getBookId());
+		/*map.put("bookId", chapter.getBookId());*/
 		map.put("bookKey",chapter.getBookKey());
-		map.put("preChapterId",chapter.getPreChapterId());
+//		map.put("preChapterId",chapter.getPreChapterId());
 		/*map.put("chapterKey", chapter.getChapterKey());*/
 		return map;
 	}
