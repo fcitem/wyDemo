@@ -23,6 +23,11 @@ public class HttpConnect {
 		this.urladdress=url;
 		this.getconnect();
 	}	
+	/**
+	 * @author fengchao
+	 * @date 2016年12月8日
+	 * 注释:新建一个HttpConnect返回
+	 */
 	public static HttpConnect getHttpConnect(String url){
 		return new HttpConnect(url);
 	}

@@ -1,6 +1,5 @@
 package com.wyDemo.pro;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
@@ -16,42 +15,73 @@ public class BookInfo {
 	private long categoryId;   //类别id
 	private String name;	//类别名称
 	private int type;       //类别类型，其中0是出版书籍分类类别，1是原创分类类别
-	private StringBuilder description;
+	private String description;
 	private BookInfo parent;   //父类别，在选择书籍分类时选择父类别id是无效的,目前云阅读只有两级分类
 	private String title;     //书名
-	private String chapterTitle;    //卷名
-	private StringBuilder chapterDescription;   //卷描述
-	private String sectionTitle;    //章节名字
-	private String sectionDescription;   //章节描述
+	private int price;
+	private String author;
+	private int status;
+	private int bookType;
+	private String bookKey;  //书籍用户方对该书的标识符，建议选择;该值可以选择为己方书籍的唯一标识符id等
+	Document doc;
 	public BookInfo() {
+		setCategoryId(1);
+		setBookType(1);
+		setStatus(2);
+		setPrice(3);
+		setBookKey("001");
+		setAuthor("一束干花");
 		setDescription(null);
 		setTitle("大院里的童年");
-		setChapterTitle("前言");
-		setChapterDescription(null);
-		setSectionTitle("丑小鸭");
-		setSectionDescription(null);
 	}
-	public String getSectionTitle() {
-		return sectionTitle;
+	public int getPrice() {
+		return price;
 	}
-
-	public void setSectionTitle(String sectionTitle) {
-		this.sectionTitle = sectionTitle;
+	public String getBookKey() {
+		return bookKey;
 	}
-
-	public void setSectionDescription(StringBuilder sectionDescription) {
-		Document doc;
+	public void setBookKey(String bookKey) {
+		this.bookKey = bookKey;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public int getBookType() {
+		return bookType;
+	}
+	public void setBookType(int bookType) {
+		this.bookType = bookType;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
 		try {
-			doc = Jsoup.connect("http://localhost:8080/wyDemo/sectionDescription.html").get();
-			this.sectionDescription=doc.toString();
+			doc = Jsoup.connect("http://localhost:8080/wyDemo/description.html").get();
+			this.description=doc.toString();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	public StringBuilder getDescription() {
-		return description;
+	public Document getDoc() {
+		return doc;
 	}
-	public void setDescription(StringBuilder description2) {
+	public void setDoc(Document doc) {
+		this.doc = doc;
+	}
+	/*public void setDescription(StringBuilder description2) {
 		this.description =new StringBuilder();
 		this.description.append("<html>");
 		description.append("<head>");
@@ -67,21 +97,10 @@ public class BookInfo {
 		description.append("</div>");
 		description.append("</body>");
 		description.append("</html>");
-	}
+	}*/
  
 	
-	public String getChapterTitle() {
-		return chapterTitle;
-	}
-
-	public void setChapterTitle(String chapterTitle) {
-		this.chapterTitle = chapterTitle;
-	}
-
-	public StringBuilder getChapterDescription() {
-		return chapterDescription;
-	}
-	public void setChapterDescription(StringBuilder chapterDescription2) {
+	/*public void setChapterDescription(StringBuilder chapterDescription2) {
 		this.chapterDescription = new StringBuilder();
 		chapterDescription.append("<html>");
 		chapterDescription.append("<head>");
@@ -99,7 +118,7 @@ public class BookInfo {
 		chapterDescription.append("</div>");
 	    chapterDescription.append("</body>");
 		chapterDescription.append("</html>");
-	}
+	}*/
 	public String getTitle() {
 		return title;
 	}

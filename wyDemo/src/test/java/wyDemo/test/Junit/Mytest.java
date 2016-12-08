@@ -1,7 +1,5 @@
 package wyDemo.test.Junit;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 import org.junit.After;
@@ -11,13 +9,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.wyDemo.pro.BookInfo;
+import com.wyDemo.pro.Chapter;
+import com.wyDemo.pro.Section;
 import com.wyDemo.util.Md5Url;
 import com.wyDemo.util.RequestParamter;
 
 import wyDemo.httpconnect.Util.HttpConnect;
 
 public class Mytest {
-
+ 
+	BookInfo book=new BookInfo();
+	Chapter chapter=new Chapter();
+	Section section=new Section();
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -28,6 +31,9 @@ public class Mytest {
 
 	@Before
 	public void setUp() throws Exception {
+	  chapter.setBookKey(book.getBookKey());
+	  section.setBookKey(book.getBookKey());
+	  section.setSectionKey(chapter.getChapterKey());
 	}
 
 	@After
@@ -41,22 +47,9 @@ public class Mytest {
 	 */
 	@Test
 	public void testAddBook() {
-		BookInfo book=new BookInfo();
 		String url="http://testapi.yuedu.163.com/book/add.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		HashMap<String,Object> map=new HashMap<String,Object>();
-		map.put("categoryId",1);
-		map.put("title",book.getTitle());
-		map.put("price",3);
-		map.put("author","wy");
-		map.put("status", 2);
-		map.put("bookType", 1);
-		map.put("description", book.getDescription());
-		/*try {
-			map.put("url",URLEncoder.encode("http://www.koalacan.com/app/publishList.html","UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}*/
+		HashMap<String,Object> map=getBookParamMap();
 		sendData(connect, "POST",map);
 	}
 	/**
@@ -68,7 +61,7 @@ public class Mytest {
 	public void testUpdateBook(){
 		String url="http://testapi.yuedu.163.com/book/update.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		HashMap<String,Object> map=new HashMap<String,Object>();
+		HashMap<String,Object> map=getBookParamMap();
 		sendData(connect, "POST",map);
 	}
 	/**
@@ -80,7 +73,7 @@ public class Mytest {
 	public void addChapter(){
 		String url="http://testapi.yuedu.163.com/bookChapter/add.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		HashMap<String,Object> map=new HashMap<String,Object>();
+		HashMap<String,Object> map=getChapterParamMap();
 		sendData(connect, "POST",map);
 	}
 	/**
@@ -154,5 +147,54 @@ public class Mytest {
 		System.out.println(RequestParamter.getParamter(map, newstr));
 		connect.sendStr(RequestParamter.getParamter(map, newstr));
 		connect.read();
+	}
+	/**
+	 * @author fengchao
+	 * @date 2016年12月8日
+	 * 注释:将书的参数及值封装进map
+	 */
+	public HashMap<String,Object> getBookParamMap(){
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("categoryId",book.getCategoryId());
+		map.put("categoryId",book.getCategoryId());
+		map.put("bookKey",book.getBookKey());
+		map.put("title",book.getTitle());
+		map.put("price",book.getPrice());
+		map.put("author",book.getAuthor());
+		map.put("status", book.getStatus());
+		map.put("bookType", book.getBookType());
+		map.put("description", book.getDescription());
+		return map;
+	}
+	/**
+	 * @author fengchao
+	 * @date 2016年12月8日
+	 * 注释：将卷的参数及值封装进map
+	 */
+	public HashMap<String,Object> getChapterParamMap(){
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("title", chapter.getTitle());
+		map.put("description", chapter.getDescription());
+		map.put("bookId", chapter.getBookId());
+		map.put("bookKey",chapter.getBookKey());
+		map.put("preChapterId",chapter.getPreChapterId());
+		map.put("chapterKey", chapter.getChapterKey());
+		return map;
+	}
+	/**
+	 * @author fengchao
+	 * @date 2016年12月8日
+	 * 注释:将章节的参数及值封装进map
+	 */
+	public HashMap<String,Object> getSectionParamMap(){
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("title", section.getTitle());
+		map.put("content", section.getContent());
+		map.put("bookId", section.getBookId());
+		map.put("bookKey",section.getBookKey());
+		map.put("sectionKey",section.getSectionKey());
+		map.put("chapterKey", section.getChapterKey());
+		map.put("preSectionId", section.getPreSectionId());
+		return map;
 	}
 }
