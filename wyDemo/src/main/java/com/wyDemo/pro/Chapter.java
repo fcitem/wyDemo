@@ -17,7 +17,7 @@ public class Chapter {
 	public Chapter() {
 		setTitle("前言");
 		setDescription(null);
-		setBookId("");
+		setBookId("ts_50d76ff6d8b54e6499e22359255159c7_4");
 		setBookKey("001");
 		setPreChapterId("");
 		setChapterKey("001");

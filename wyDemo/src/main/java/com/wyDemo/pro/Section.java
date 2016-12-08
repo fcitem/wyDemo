@@ -19,7 +19,7 @@ public class Section {
 	private String content;   //章节内容
 	
 	public Section() {
-        setBookId("");
+        setBookId("ts_50d76ff6d8b54e6499e22359255159c7_4");
         setBookKey("001");
 		setTitle("丑小鸭");
 		setContent(null);

@@ -178,7 +178,7 @@ public class Mytest {
 		map.put("bookId", chapter.getBookId());
 		map.put("bookKey",chapter.getBookKey());
 		map.put("preChapterId",chapter.getPreChapterId());
-		map.put("chapterKey", chapter.getChapterKey());
+		/*map.put("chapterKey", chapter.getChapterKey());*/
 		return map;
 	}
 	/**
