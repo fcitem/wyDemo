@@ -36,7 +36,7 @@ public class Section {
 	public void setContent(String content) {
 		try {
 			doc = Jsoup.connect("http://localhost:8080/wyDemo/sectionDescription.html").get();
-			this.content=doc.toString();
+			this.content=doc.getElementById("content").toString();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

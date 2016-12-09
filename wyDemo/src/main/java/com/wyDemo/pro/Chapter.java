@@ -1,13 +1,16 @@
 package com.wyDemo.pro;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Node;
 
 public class Chapter {
 	private String title;    //卷名
-	private String description;   //卷描述
+	private StringBuilder description=new StringBuilder();   //卷描述
 	private String bookId;
 	private String bookKey;
 	private String preChapterId;   //前一个卷的id，第一卷值为””。该参数用于设定卷的顺序，很重要。
@@ -72,13 +75,17 @@ public class Chapter {
 		this.doc = doc;
 	}
 
-	public String getDescription() {
+	public StringBuilder getDescription() {
 		return description;
 	}
-	public void setDescription(String description) {
+
+	public void setDescription(StringBuilder description) {
 		try {
 			doc = Jsoup.connect("http://localhost:8080/wyDemo/chapterDescription.html").get();
-			this.description=doc.toString();
+			List<Node> list=doc.getElementById("content").childNodes();
+			for(Iterator<Node> it=list.iterator();it.hasNext();){
+				this.description.append(it.next().toString());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

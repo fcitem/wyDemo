@@ -1,9 +1,13 @@
 package com.wyDemo.pro;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Node;
 
 /**
  * @author fengchao
@@ -15,7 +19,7 @@ public class BookInfo {
 	private long categoryId;   //类别id
 	private String name;	//类别名称
 	private int type;       //类别类型，其中0是出版书籍分类类别，1是原创分类类别
-	private String description;
+	private StringBuilder description=new StringBuilder();
 	private BookInfo parent;   //父类别，在选择书籍分类时选择父类别id是无效的,目前云阅读只有两级分类
 	private String title;     //书名
 	private int price;
@@ -29,7 +33,7 @@ public class BookInfo {
 		setBookType(1);
 		setStatus(2);
 		setPrice(3);
-		setBookKey("001");
+		setBookKey("002");
 		setAuthor("一束干花");
 		setDescription(null);
 		setTitle("大院里的童年");
@@ -64,16 +68,21 @@ public class BookInfo {
 	public void setBookType(int bookType) {
 		this.bookType = bookType;
 	}
-	public String getDescription() {
+	
+	public StringBuilder getDescription() {
 		return description;
 	}
-	public void setDescription(String description) {
-		try {
+	public void setDescription(StringBuilder description) {
+		/*try {
 			doc = Jsoup.connect("http://localhost:8080/wyDemo/description.html").get();
-			this.description=doc.toString();
+			List<Node> list=doc.getElementById("content").childNodes();
+			for (Iterator<Node> it=list.iterator();it.hasNext();) {
+				this.description.append(it.next().toString());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
+		this.description.append("<p><span>&nbsp; 简介：本书以一个孩子的视角，描述了住扎在充满佛教遗迹部队大院里的故事。整部作品以时间为轴线，写了在六十年代初至七十年代初这个期间内，围绕在作者身边的人和事，真实还原了历史，还原了风俗、人情和社会。在文中，作者以饱满的笔触写了亲人的一次反革命事件开起了作者的学生期代，接下来的一次对特务的抓扑，又让她大来眼界，启蒙老师的污点又让她震惊于人性的残酷，山那边奇特的佛像引起她无限的联想·····作者用一个个小故事将那个时代发生的事连缀成了一张大网，透过它，你可以看到整个曾经。</span></p>");
 	}
 	public Document getDoc() {
 		return doc;
