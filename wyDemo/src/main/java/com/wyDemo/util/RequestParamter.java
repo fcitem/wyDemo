@@ -7,8 +7,6 @@ import com.wyDemo.pro.BookInfo;
 import com.wyDemo.pro.Chapter;
 import com.wyDemo.pro.Section;
 
-import wyDemo.httpconnect.Util.HttpConnect;
-
 /**
  * @author fengchao
  * @data:2016年12月8日
@@ -85,12 +83,13 @@ public class RequestParamter {
 	 * @author fengchao
 	 * @date 2016年12月7日
 	 * @param connect(httpConnect连接)，requestMethord(请求类型，post或者get),map(封装的请求数据，不用封装consumerKey和secretKey)
-	 * 注释:MD5编码encode url后发送数据到相应的请求地址
+	 * 注释:MD5编码encode url后发送数据到相应的请求地址,并获取响应结果
 	 */
-	 public static void sendData(HttpConnect connect,String requestMethord,HashMap<String, Object> map){
+	 public static String sendData(HttpConnect connect,String requestMethord,HashMap<String, Object> map){
 		String newstr=Md5Url.encodeUrl(connect.getUrladdress(), requestMethord,map);
 		System.out.println(RequestParamter.getParamter(map, newstr));
-		connect.sendStr(RequestParamter.getParamter(map, newstr));
-		connect.read();
+		String msg=connect.sendStr(RequestParamter.getParamter(map, newstr));  //发送请求,获取响应
+		return msg;
+//		return connect.read();
 	}
 }

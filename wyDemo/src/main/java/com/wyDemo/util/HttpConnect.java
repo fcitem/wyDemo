@@ -72,27 +72,29 @@ public class HttpConnect {
 			e.printStackTrace();
 		}
 	}
-	public void sendStr(String msg)
+	public String sendStr(String msg)
 	{
 		try {
 			out.write(msg);
 			out.flush();
 			out.close();
-			connect.getInputStream();  //此处才是真正的发送数据
+			BufferedReader reader=new BufferedReader(new InputStreamReader(connect.getInputStream()));  //此处才是真正的发送数据
+			return reader.readLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return "";
 	}
-	public void read(){
+	public String read(){
 		try {
 			BufferedReader reader=new BufferedReader(new InputStreamReader(connect.getInputStream()));
-			System.out.println(reader.readLine());
+			return (reader.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "";
 		
 	}
 }

@@ -5,14 +5,14 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wyDemo.pro.BookInfo;
 import com.wyDemo.pro.Chapter;
+import com.wyDemo.util.HttpConnect;
 import com.wyDemo.util.RequestParamter;
-
-import wyDemo.httpconnect.Util.HttpConnect;
 
 /**
  * @author fengchao
@@ -22,6 +22,7 @@ import wyDemo.httpconnect.Util.HttpConnect;
 @Controller
 public class testBook {
 
+	Logger log=Logger.getLogger(getClass());
 	BookInfo book=new BookInfo();
 	Chapter chapter=new Chapter();
 	HttpConnect connect;
@@ -50,10 +51,10 @@ public class testBook {
 		connect=HttpConnect.getHttpConnect(url);
 		book.setDescription(description);
 		HashMap<String,Object> map=RequestParamter.getBookParamMap(book);
-		RequestParamter.sendData(connect, "POST",map);
-		connect.read();
+		String msg=RequestParamter.sendData(connect, "POST",map);  //发送数据
+		log.debug(msg);
 		try {
-			response.getWriter().write("sds");   //处理void返回值
+			response.getWriter().write(msg);   //处理void返回值
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,9 +70,10 @@ public class testBook {
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
 		chapter.setDescription(description);
 		HashMap<String,Object> map=RequestParamter.getChapterParamMap(chapter);
-		RequestParamter.sendData(connect, "POST",map);
+		String msg=RequestParamter.sendData(connect, "POST",map);
+		log.debug(msg);
 		try {
-			response.getWriter().write("");
+			response.getWriter().write(msg);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
