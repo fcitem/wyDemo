@@ -15,6 +15,7 @@ public class BookInfo {
 	private String description;
 	private BookInfo parent;   //父类别，在选择书籍分类时选择父类别id是无效的,目前云阅读只有两级分类
 	private String title;     //书名
+	private int payType;
 	private int price;
 	private String author;
 	private int status;
@@ -40,6 +41,13 @@ public class BookInfo {
 	}
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	
+	public int getPayType() {
+		return payType;
+	}
+	public void setPayType(int payType) {
+		this.payType = payType;
 	}
 	public int getStatus() {
 		return status;

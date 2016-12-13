@@ -41,9 +41,10 @@ public class HttpConnect {
 			connect.setUseCaches(false);
 			 //application/x-javascript text/xml->xml鏁版嵁 application/x-javascript->json瀵硅薄 application/x-www-form-urlencoded->琛ㄥ崟鏁版嵁
 			connect.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+			connect.setRequestProperty("Accept-Charset", "utf-8");
 //			connect.setRequestProperty("Content-Type", "application/json");
 			connect.connect();
-			out=new OutputStreamWriter(connect.getOutputStream());
+			out=new OutputStreamWriter(connect.getOutputStream(),"utf-8");   //以utf-8方式发送数据
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,6 +60,7 @@ public class HttpConnect {
 			System.out.println(msg);
 			sendtest(msg);
 		} catch (JsonProcessingException e) {
+		
 		}
 	}
 	public void sendtest(String s){
@@ -75,10 +77,11 @@ public class HttpConnect {
 	public String sendStr(String msg)
 	{
 		try {
+//			msg=new String(msg.getBytes("utf-8"));
 			out.write(msg);
 			out.flush();
 			out.close();
-			BufferedReader reader=new BufferedReader(new InputStreamReader(connect.getInputStream()));  //此处才是真正的发送数据
+			BufferedReader reader=new BufferedReader(new InputStreamReader(connect.getInputStream(),"utf-8"));  //此处才是真正的发送数据
 			return reader.readLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -91,10 +94,8 @@ public class HttpConnect {
 			BufferedReader reader=new BufferedReader(new InputStreamReader(connect.getInputStream()));
 			return (reader.readLine());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";
-		
 	}
 }

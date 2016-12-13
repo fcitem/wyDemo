@@ -11,10 +11,9 @@ import org.junit.Test;
 import com.wyDemo.pro.BookInfo;
 import com.wyDemo.pro.Chapter;
 import com.wyDemo.pro.Section;
+import com.wyDemo.util.HttpConnect;
 import com.wyDemo.util.Md5Url;
 import com.wyDemo.util.RequestParamter;
-
-import wyDemo.httpconnect.Util.HttpConnect;
 
 public class Mytest {
  

@@ -41,6 +41,7 @@ public class RequestParamter {
 		map.put("categoryId",book.getCategoryId());
 		map.put("bookKey",book.getBookKey());
 		map.put("title",book.getTitle());
+		map.put("payType",book.getPayType());
 		map.put("price",book.getPrice());
 		map.put("author",book.getAuthor());
 		map.put("status", book.getStatus());
@@ -56,10 +57,10 @@ public class RequestParamter {
 	public static HashMap<String,Object> getChapterParamMap(Chapter chapter){
 		HashMap<String,Object> map=new HashMap<String,Object>();
 		map.put("title", chapter.getTitle());
-		map.put("description", chapter.getDescription());
+//		map.put("description", chapter.getDescription());
 		/*map.put("bookId", chapter.getBookId());*/
 		map.put("bookKey",chapter.getBookKey());
-//		map.put("preChapterId",chapter.getPreChapterId());
+		map.put("preChapterId",chapter.getPreChapterId());
 		map.put("chapterKey", chapter.getChapterKey());
 		return map;
 	}

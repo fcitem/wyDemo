@@ -1,5 +1,12 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/wyDemo/controller/testBook.java=UTF-8
+encoding//src/main/java/com/wyDemo/pro/BookInfo.java=UTF-8
+encoding//src/main/java/com/wyDemo/util/HttpConnect.java=UTF-8
+encoding//src/main/java/com/wyDemo/util/MD5.java=UTF-8
+encoding//src/main/java/com/wyDemo/util/Md5Url.java=UTF-8
+encoding//src/main/java/com/wyDemo/util/RequestParamter.java=UTF-8
 encoding//src/main/webapp/description.html=UTF-8
 encoding//src/main/webapp/description.jsp=UTF-8
 encoding//src/main/webapp/index.jsp=UTF-8
+encoding//src/test/java/wyDemo/server/jetty/QuickStart.java=UTF-8
 encoding/<project>=UTF-8
