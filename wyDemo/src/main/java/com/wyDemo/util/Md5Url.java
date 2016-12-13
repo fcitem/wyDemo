@@ -19,6 +19,11 @@ public class Md5Url {
 	public static void setTimestamp(long timestamp) {
 		Md5Url.timestamp = timestamp;
 	}
+	/**
+	 * @author fengchao
+	 * @data: 2016年12月13日
+	 * @注释：md5请求参数与地址
+	 */
 	public static String encodeUrl(String url,String requestMethord,HashMap<String,Object> map){
 		StringBuilder builder=new StringBuilder();
 		builder.append(requestMethord);
@@ -29,7 +34,9 @@ public class Md5Url {
 		Iterator<String> it=map.keySet().iterator();
 		while(it.hasNext()){
 			String key=it.next();
-			builder.append(key).append("=").append(map.get(key));
+			if(hasValid(key)){  //text类型不参与加密
+				builder.append(key).append("=").append(map.get(key));
+			}
 		}
 		builder.append(secretKey);
 		try {
@@ -42,6 +49,20 @@ public class Md5Url {
 			e.printStackTrace();
 		}
 		return md5Url;
+	}
+	/**
+	 * @author fengchao
+	 * @data: 2016年12月13日
+	 * @注释：验证属性是否需要加密
+	 */
+	public static boolean hasValid(String key){
+		String[] invalid=new String[]{"description","content"};   //无效键(不需要加密)的集合
+		for (String string : invalid) {
+			if(string.equals(string)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

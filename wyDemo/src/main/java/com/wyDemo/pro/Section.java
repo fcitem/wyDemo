@@ -1,13 +1,7 @@
 package com.wyDemo.pro;
 
-import java.io.IOException;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 public class Section {
 
-	Document doc;
 	private String bookId;
 	private String bookKey;
 	private String chapterId;  //章节所在卷的id,如果只有一级目录的书籍，则卷id为空。对于二级目录chapterId和chapterKey必选其一
@@ -17,16 +11,11 @@ public class Section {
 	private String sectionKey;   //用户方提供的更新章节的id
 	private String title;    //章节标题
 	private String content;   //章节内容
+	private int needPay;    //是否付费
+	private int price;    //章节价格
+	private int wordcount;
 	
 	public Section() {
-        setBookId("ts_50d76ff6d8b54e6499e22359255159c7_4");
-        setBookKey("001");
-		setTitle("丑小鸭");
-		setContent(null);
-		setChapterId("");
-		setSectionKey("001");
-		setChapterKey("001");
-		setPreSectionId("");
 	}
 	
 	public String getContent() {
@@ -34,12 +23,31 @@ public class Section {
 	}
 
 	public void setContent(String content) {
-		try {
-			doc = Jsoup.connect("http://localhost:8080/wyDemo/sectionDescription.html").get();
-			this.content=doc.getElementById("content").toString();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.content=content;
+	}
+
+	public int getNeedPay() {
+		return needPay;
+	}
+
+	public void setNeedPay(int needPay) {
+		this.needPay = needPay;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getWordcount() {
+		return wordcount;
+	}
+
+	public void setWordcount(int wordcount) {
+		this.wordcount = wordcount;
 	}
 
 	public String getBookId() {

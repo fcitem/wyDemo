@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wyDemo.pro.BookInfo;
 import com.wyDemo.pro.Chapter;
+import com.wyDemo.pro.Section;
 import com.wyDemo.util.HttpConnect;
 import com.wyDemo.util.RequestParamter;
 
@@ -27,6 +28,7 @@ public class testBook {
 	Logger log=Logger.getLogger(getClass());
 	BookInfo book=new BookInfo();
 	Chapter chapter=new Chapter();
+	Section section=new Section();
 	HttpConnect connect;
 	public testBook() {
 		book.setCategoryId(1);
@@ -35,17 +37,21 @@ public class testBook {
 		book.setPrice(3);
 		book.setPayType(1);
 		book.setBookKey("1003");
-		try {
-			book.setAuthor("一束干花");
-			book.setTitle("大院里的童年");
-			chapter.setTitle("前言");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		chapter.setBookId("ts_7de88f299bac4217bc033d7162ee2149_4");
+		book.setAuthor("一束干花");
+		book.setTitle("大院里的童年");
+		chapter.setTitle("前言");
+		chapter.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
 		chapter.setBookKey("1003");
 		chapter.setPreChapterId("");
 		chapter.setChapterKey("001");
+		section.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
+		section.setBookKey("1003");
+		section.setChapterKey("001");
+		section.setSectionKey("0011");
+		section.setPreSectionId("");
+		section.setTitle("丑小鸭");
+		section.setNeedPay(1);   //付费
+		section.setPrice(3);
 	}
 	/**
 	 * @author fengchao
@@ -113,8 +119,20 @@ public class testBook {
 	 * @注释：更新卷
 	 */
 	@RequestMapping("updateChapter")
-	public void updateChapter(){
-		
+	public void updateChapter(String description,HttpServletResponse response,HttpServletRequest request){
+		String url="http://testapi.yuedu.163.com/bookChapter/update.json";
+		HttpConnect connect=HttpConnect.getHttpConnect(url);
+		chapter.setDescription(description);
+		HashMap<String,Object> map=RequestParamter.getChapterParamMap(chapter);
+		String msg=RequestParamter.sendData(connect, "POST",map);
+		log.debug(msg);
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().write(msg);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * @author fengchao
@@ -122,8 +140,20 @@ public class testBook {
 	 * @注释：增加章节
 	 */
 	@RequestMapping("addSection")
-	public void addSection(){
-		
+	public void addSection(String content,HttpServletResponse response,HttpServletRequest request){
+		String url="http://testapi.yuedu.163.com/bookSection/add.json";
+		HttpConnect connect=HttpConnect.getHttpConnect(url);
+		section.setContent(content);
+		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
+		String msg=RequestParamter.sendData(connect, "POST",map);
+		log.debug(msg);
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().write(msg);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * @author fengchao
@@ -131,7 +161,19 @@ public class testBook {
 	 * @注释：更新章节
 	 */
 	@RequestMapping("updateSection")
-	public void updateSection(){
-		
+	public void updateSection(String content,HttpServletResponse response,HttpServletRequest request){
+		String url="http://testapi.yuedu.163.com/bookSection/update.json";
+		HttpConnect connect=HttpConnect.getHttpConnect(url);
+		section.setContent(content);
+		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
+		String msg=RequestParamter.sendData(connect, "POST",map);
+		log.debug(msg);
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().write(msg);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

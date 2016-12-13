@@ -4,10 +4,10 @@ $(document).ready(function(){
         autoHeight: false
     });
 	$("#submit").click(function(){
-		var text=ue.getContent();
+		var text=ue.getContentTxt();
 		$.ajax({
 			type:"POST",
-			url:"/wyDemo/addSection",
+			url:"/wyDemo/updateChapter",
 			data:{
 				description:text
 			},

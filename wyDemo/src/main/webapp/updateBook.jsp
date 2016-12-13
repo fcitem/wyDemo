@@ -9,7 +9,7 @@
 <!-- 编辑器源码文件 -->
 <script type="text/javascript" src="excresource/ueditor-1.4.3.3-jsp/ueditor.all.min.js"></script>
 <script type="text/javascript" src="excresource/jquery-2.2.3.min.js"></script>
-<script type="text/javascript" src="javascript/description.js"></script>
+<script type="text/javascript" src="javascript/updateBook.js"></script>
 <script type="text/javascript"></script>
 <title>Description</title>
 </head>

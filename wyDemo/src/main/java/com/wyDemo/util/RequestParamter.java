@@ -57,7 +57,7 @@ public class RequestParamter {
 	public static HashMap<String,Object> getChapterParamMap(Chapter chapter){
 		HashMap<String,Object> map=new HashMap<String,Object>();
 		map.put("title", chapter.getTitle());
-//		map.put("description", chapter.getDescription());
+		map.put("description", chapter.getDescription());
 		/*map.put("bookId", chapter.getBookId());*/
 		map.put("bookKey",chapter.getBookKey());
 		map.put("preChapterId",chapter.getPreChapterId());
@@ -71,13 +71,15 @@ public class RequestParamter {
 	 */
 	public static HashMap<String,Object> getSectionParamMap(Section section){
 		HashMap<String,Object> map=new HashMap<String,Object>();
+//		map.put("bookId", section.getBookId());
+		map.put("bookKey",section.getBookKey());
+		map.put("chapterKey", section.getChapterKey());
 		map.put("title", section.getTitle());
 		map.put("content", section.getContent());
-		map.put("bookId", section.getBookId());
-		map.put("bookKey",section.getBookKey());
 		map.put("sectionKey",section.getSectionKey());
-		map.put("chapterKey", section.getChapterKey());
 		map.put("preSectionId", section.getPreSectionId());
+		map.put("needPay", section.getNeedPay());
+		map.put("price", section.getPrice());
 		return map;
 	}
 	/**
@@ -91,6 +93,5 @@ public class RequestParamter {
 		System.out.println(RequestParamter.getParamter(map, newstr));
 		String msg=connect.sendStr(RequestParamter.getParamter(map, newstr));  //发送请求,获取响应
 		return msg;
-//		return connect.read();
 	}
 }

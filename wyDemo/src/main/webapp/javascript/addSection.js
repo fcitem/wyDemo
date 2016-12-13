@@ -7,9 +7,9 @@ $(document).ready(function(){
 		var text=ue.getContent();
 		$.ajax({
 			type:"POST",
-			url:"/wyDemo/addChapter",
+			url:"/wyDemo/addSection",
 			data:{
-				description:text
+				content:text
 			},
 			success:function(data){
 				alert(data);
