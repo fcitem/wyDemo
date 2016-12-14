@@ -3,9 +3,7 @@ $(document).ready(function(){
 	var ue = UE.getEditor('container', {
         autoHeight: false
     });
-	/*ue.filterOutputRule(!ue.p);*/
 	$("#submit").click(function(){
-		debugger;
 		var text=ue.getPlainTxt();
 		alert(text);
 		$.ajax({

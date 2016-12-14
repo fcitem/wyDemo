@@ -94,4 +94,16 @@ public class RequestParamter {
 		String msg=connect.sendStr(RequestParamter.getParamter(map, newstr));  //发送请求,获取响应
 		return msg;
 	}
+	 /**
+	 * @author fengchao
+	 * @data: 2016年12月14日
+	 * @注释：转换段落格式为<p></p>
+	 */
+	public static String ChangeContent(String content){
+		 StringBuilder builder=new StringBuilder("<p>");
+		 content=content.replaceAll("(\r\n|\r|\n|\n\r)", "</p><p>");
+		 System.out.println(content);
+		 builder.append(content).append("</p>");
+		 return builder.toString();
+	 }
 }

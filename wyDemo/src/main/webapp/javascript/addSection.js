@@ -4,7 +4,7 @@ $(document).ready(function(){
         autoHeight: false
     });
 	$("#submit").click(function(){
-		var text=ue.getPlainText();
+		var text=ue.getPlainTxt();
 		$.ajax({
 			type:"POST",
 			url:"/wyDemo/addSection",

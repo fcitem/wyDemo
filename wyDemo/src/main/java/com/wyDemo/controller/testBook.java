@@ -138,11 +138,11 @@ public class testBook {
 	public void addSection(String content,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/add.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		section.setTitle("后记");
-		section.setSectionKey("0016");
-		section.setPreSectionKey("0015");
+		section.setTitle("第八章 继续手写");
+		section.setSectionKey("0018");
+		section.setPreSectionKey("0017");
 //		section.setNeedPay(1);  //收费
-		section.setContent(content);
+		section.setContent(RequestParamter.ChangeContent(content));
 		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
 		String msg=RequestParamter.sendData(connect, "POST",map);
 		log.debug(msg);
@@ -163,10 +163,10 @@ public class testBook {
 	public void updateSection(String content,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/update.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		section.setTitle("第七章 后记");
-		section.setSectionKey("0016");
-		section.setPreSectionKey("0015");
-		section.setContent(content);
+		section.setTitle("第一章 初到人间");
+		section.setSectionKey("0011");
+//		section.setPreSectionKey("0011");
+		section.setContent(RequestParamter.ChangeContent(content));
 		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
 		String msg=RequestParamter.sendData(connect, "POST",map);
 		log.debug(msg);

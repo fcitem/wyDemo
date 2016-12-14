@@ -7286,7 +7286,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
             var reg = new RegExp(domUtils.fillChar, 'g'),
                 html = this.body.innerHTML.replace(/[\n\r]/g, '');//ie要先去了\n在处理
             debugger;
-            html = html.replace(/<(div)[^>]*>(<br\/?>|&nbsp;)<\/\1>/gi, '\n')
+            html = html.replace(/<(p|div)[^>]*>(<br\/?>|&nbsp;)<\/\1>/gi, '\n')
                 .replace(/<br\/?>/gi, '\n')
                 .replace(/<[^>/]+>/g, '')
                 .replace(/(\n)?<\/([^>]+)>/g, function (a, b, c) {
