@@ -3,8 +3,11 @@ $(document).ready(function(){
 	var ue = UE.getEditor('container', {
         autoHeight: false
     });
+	/*ue.filterOutputRule(!ue.p);*/
 	$("#submit").click(function(){
-		var text=ue.getContent();
+		debugger;
+		var text=ue.getPlainTxt();
+		alert(text);
 		$.ajax({
 			type:"POST",
 			url:"/wyDemo/updateSection",

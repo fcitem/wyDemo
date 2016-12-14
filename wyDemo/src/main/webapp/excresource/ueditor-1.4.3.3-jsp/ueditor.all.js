@@ -7285,7 +7285,8 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
         getPlainTxt: function () {
             var reg = new RegExp(domUtils.fillChar, 'g'),
                 html = this.body.innerHTML.replace(/[\n\r]/g, '');//ie要先去了\n在处理
-            html = html.replace(/<(p|div)[^>]*>(<br\/?>|&nbsp;)<\/\1>/gi, '\n')
+            debugger;
+            html = html.replace(/<(div)[^>]*>(<br\/?>|&nbsp;)<\/\1>/gi, '\n')
                 .replace(/<br\/?>/gi, '\n')
                 .replace(/<[^>/]+>/g, '')
                 .replace(/(\n)?<\/([^>]+)>/g, function (a, b, c) {

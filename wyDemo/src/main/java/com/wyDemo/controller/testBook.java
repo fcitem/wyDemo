@@ -1,7 +1,6 @@
 package com.wyDemo.controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,21 +35,21 @@ public class testBook {
 		book.setStatus(2);
 		book.setPrice(3);
 		book.setPayType(1);
-		book.setBookKey("1003");
+		book.setBookKey("book_1001");
 		book.setAuthor("一束干花");
-		book.setTitle("大院里的童年");
+		book.setTitle("测试的书");
 		chapter.setTitle("前言");
-		chapter.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
-		chapter.setBookKey("1003");
+//		chapter.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
+		chapter.setBookKey("book_1001");
 		chapter.setPreChapterId("");
 		chapter.setChapterKey("001");
-		section.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
-		section.setBookKey("1003");
+//		section.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
+		section.setBookKey("book_1001");
 		section.setChapterKey("001");
 		section.setSectionKey("0011");
 		section.setPreSectionId("");
-		section.setTitle("丑小鸭");
-		section.setNeedPay(1);   //付费
+		section.setTitle("父亲的希望");
+		section.setNeedPay(0);   //1付费
 		section.setPrice(3);
 	}
 	/**
@@ -62,11 +61,7 @@ public class testBook {
 	public void addBook(String description,HttpServletResponse response){
 		String url="http://testapi.yuedu.163.com/book/add.json";
 		connect=HttpConnect.getHttpConnect(url);
-		try {
-			book.setDescription(new String("简介：本书以一个孩子的视角，描述了住扎在充满佛教遗迹部队大院里的故事。整部作品以时间为轴线，写了在六十年代初至七十年代初这个期间内，围绕在作者身边的人和事，真实还原了历史，还原了风俗、人情和社会。在文中，作者以饱满的笔触写了亲人的一次反革命事件开起了作者的学生期代，接下来的一次对特务的抓扑，又让她大来眼界，启蒙老师的污点又让她震惊于人性的残酷，山那边奇特的佛像引起她无限的联想•••••作者用一个个小故事将那个时代发生的事连缀成了一张大网，透过它，你可以看到整个曾经。".getBytes(),"utf-8"));
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		}
+		book.setDescription(description);
 		HashMap<String,Object> map=RequestParamter.getBookParamMap(book);
 		String msg=RequestParamter.sendData(connect, "POST",map);  //发送数据
 		log.debug(msg);
@@ -143,6 +138,10 @@ public class testBook {
 	public void addSection(String content,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/add.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
+		section.setTitle("后记");
+		section.setSectionKey("0016");
+		section.setPreSectionKey("0015");
+//		section.setNeedPay(1);  //收费
 		section.setContent(content);
 		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
 		String msg=RequestParamter.sendData(connect, "POST",map);
@@ -164,6 +163,9 @@ public class testBook {
 	public void updateSection(String content,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/update.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
+		section.setTitle("第七章 后记");
+		section.setSectionKey("0016");
+		section.setPreSectionKey("0015");
 		section.setContent(content);
 		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
 		String msg=RequestParamter.sendData(connect, "POST",map);
