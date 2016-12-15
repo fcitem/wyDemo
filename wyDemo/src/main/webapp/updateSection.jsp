@@ -14,6 +14,33 @@
 <title>sectionDescription</title>
 </head>
 <body>
+    <div>
+        <label>BookId</label>
+    	<input type="text" name="bookId" id="bookId">
+    	<label>BookKey</label>
+    	<input type="text" id="bookKey" name="bookKey"/>
+    	<label>chapterId</label>
+    	<input type="text" name="chapterId" id="chapterId">
+    	<label>chapterKey</label>
+    	<input type="text" id="chapterKey" name="chapterKey"/>
+    	<label>preSectionId</label>
+    	<input type="text" id="preSectionId" name="preSectionId"/>
+    	<label>preSectionKey</label>
+    	<input type="text" id="preSectionKey" name="preSectionKey"/>
+    	<label>sectionKey</label>
+    	<input type="text" id="sectionKey" name="sectionKey"/>
+    </div>
+    <div>
+    	<label>标题</label>
+    	<input type="text" id="title" name="title"/>
+    	<label>是否付费</label>
+    	<select name="payType" id="payType">
+    		<option value="0">免费</option>
+    		<option value="1">付费</option>
+    	</select>
+    	<label>价格</label>
+    	<input type="text" name="price" id="price">
+    </div>
 	<div id="container" name="content"></div>
     <div>
     	<button id="submit">提交</button>

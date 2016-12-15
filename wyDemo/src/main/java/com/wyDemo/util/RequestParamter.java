@@ -3,9 +3,9 @@ package com.wyDemo.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.wyDemo.pro.BookInfo;
-import com.wyDemo.pro.Chapter;
-import com.wyDemo.pro.Section;
+import com.wyDemo.bean.Book;
+import com.wyDemo.bean.Chapter;
+import com.wyDemo.bean.Section;
 
 /**
  * @author fengchao
@@ -35,7 +35,7 @@ public class RequestParamter {
 	 * @date 2016年12月8日
 	 * 注释:将书的参数及值封装进map
 	 */
-	public static HashMap<String,Object> getBookParamMap(BookInfo book){
+	public static HashMap<String,Object> getBookParamMap(Book book){
 		HashMap<String,Object> map=new HashMap<String,Object>();
 		map.put("categoryId",book.getCategoryId());
 		map.put("categoryId",book.getCategoryId());
@@ -45,7 +45,7 @@ public class RequestParamter {
 		map.put("price",book.getPrice());
 		map.put("author",book.getAuthor());
 		map.put("status", book.getStatus());
-		map.put("bookType", book.getBookType());
+		/*map.put("bookType", book.getBookType());*/
 		map.put("description", book.getDescription());
 		return map;
 	}
@@ -60,7 +60,7 @@ public class RequestParamter {
 		map.put("description", chapter.getDescription());
 		/*map.put("bookId", chapter.getBookId());*/
 		map.put("bookKey",chapter.getBookKey());
-		map.put("preChapterId",chapter.getPreChapterId());
+		map.put("preChapterId",chapter.getPrechapterId());
 		map.put("chapterKey", chapter.getChapterKey());
 		return map;
 	}

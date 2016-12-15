@@ -14,6 +14,20 @@
 <title>chapterDescription</title>
 </head>
 <body>
+    <div>
+        <label>BookId</label>
+    	<input type="text" name="bookId" id="bookId">
+    	<label>BookKey</label>
+    	<input type="text" id="bookKey" name="bookKey"/>
+    	<label>preChapterId</label>
+    	<input type="text" id="preChapterId" name="preChapterId"/>
+    	<label>preChapterKey</label>
+    	<input type="text" id="preChapterKey" name="preChapterKey"/>
+    	<label>chapterKey</label>
+    	<input type="text" id="chapterKey" name="chapterKey"/>
+    	<label>标题</label>
+    	<input type="text" id="title" name="title"/>
+    </div>
 	<div id="container" name="content"></div>
     <div>
     	<button id="submit">提交</button>

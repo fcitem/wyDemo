@@ -1,14 +1,23 @@
 $(document).ready(function(){
 	/*实例化编辑器 */
 	var ue = UE.getEditor('container', {
-        autoHeight: false
+		toolbars: [
+	        []
+	    ],
+        autoHeight: true
     });
 	$("#submit").click(function(){
-		var text=ue.getContentTxt();
+		var text=ue.getPlainTxt();
 		$.ajax({
 			type:"POST",
 			url:"/wyDemo/updateChapter",
 			data:{
+				bookKey:$("#bookKey").val(),
+				bookId:$("#bookId").val(),
+				preChapterId:$("#preChapterId").val(),
+				preChapterKey:$("#preChapterKey").val(),
+				chapterKey:$("#chapterKey").val(),
+				title:$("#title").val(),
 				description:text
 			},
 			success:function(data){

@@ -1,18 +1,24 @@
 package com.wyDemo.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wyDemo.pro.BookInfo;
-import com.wyDemo.pro.Chapter;
-import com.wyDemo.pro.Section;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wyDemo.bean.Book;
+import com.wyDemo.bean.BookExample;
+import com.wyDemo.bean.Chapter;
+import com.wyDemo.bean.ChapterExample;
+import com.wyDemo.service.BookService;
+import com.wyDemo.service.ChapterService;
+import com.wyDemo.service.SectionService;
 import com.wyDemo.util.HttpConnect;
 import com.wyDemo.util.RequestParamter;
 
@@ -25,32 +31,35 @@ import com.wyDemo.util.RequestParamter;
 public class testBook {
 
 	Logger log=Logger.getLogger(getClass());
-	BookInfo book=new BookInfo();
-	Chapter chapter=new Chapter();
-	Section section=new Section();
+	@Autowired
+	BookService bookService;
+	@Autowired
+	ChapterService chapterService;
+	@Autowired
+	SectionService sectionService;
 	HttpConnect connect;
 	public testBook() {
-		book.setCategoryId(1);
-		book.setBookType(1);
-		book.setStatus(2);
-		book.setPrice(3);
-		book.setPayType(1);
-		book.setBookKey("book_1001");
-		book.setAuthor("一束干花");
-		book.setTitle("测试的书");
-		chapter.setTitle("前言");
-//		chapter.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
-		chapter.setBookKey("book_1001");
-		chapter.setPreChapterId("");
-		chapter.setChapterKey("001");
-//		section.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
-		section.setBookKey("book_1001");
-		section.setChapterKey("001");
-		section.setSectionKey("0011");
-		section.setPreSectionId("");
-		section.setTitle("父亲的希望");
-		section.setNeedPay(0);   //1付费
-		section.setPrice(3);
+//		book.setCategoryId(1);
+//		book.setBookType(1);
+//		book.setStatus(2);
+//		book.setPrice(3);
+//		book.setPayType(1);
+//		book.setBookKey("book_1001");
+//		book.setAuthor("一束干花");
+//		book.setTitle("测试的书");
+//		chapter.setTitle("前言");
+////		chapter.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
+//		chapter.setBookKey("book_1001");
+//		chapter.setPreChapterId("");
+//		chapter.setChapterKey("001");
+////		section.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
+//		section.setBookKey("book_1001");
+//		section.setChapterKey("001");
+//		section.setSectionKey("0011");
+//		section.setPreSectionId("");
+//		section.setTitle("父亲的希望");
+//		section.setNeedPay(0);   //1付费
+//		section.setPrice(3);
 	}
 	/**
 	 * @author fengchao
@@ -58,32 +67,40 @@ public class testBook {
 	 * @注释：更新一本书
 	 */
 	@RequestMapping("addBook")
-	public void addBook(String description,HttpServletResponse response){
+	public void addBook(@RequestBody Book book,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/book/add.json";
 		connect=HttpConnect.getHttpConnect(url);
-		book.setDescription(description);
 		HashMap<String,Object> map=RequestParamter.getBookParamMap(book);
 		String msg=RequestParamter.sendData(connect, "POST",map);  //发送数据
 		log.debug(msg);
+		ObjectMapper obj=new ObjectMapper();
 		try {
+			Book successBook=obj.readValue(msg, Book.class);
+			bookService.insertSelective(successBook);
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	@RequestMapping("updateBook")
-	public void updateBook(String description,HttpServletResponse response,HttpServletRequest request){
+	public void updateBook(@RequestBody Book book,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/book/update.json";
 		connect=HttpConnect.getHttpConnect(url);
-		book.setDescription(description);
 		HashMap<String,Object> map=RequestParamter.getBookParamMap(book);
 		String msg=RequestParamter.sendData(connect, "POST",map);  //发送数据
 		log.debug(msg);
+		ObjectMapper obj=new ObjectMapper();
 		try {
+			Book successBook=obj.readValue(msg, Book.class);
+			BookExample example=new BookExample();
+			example.createCriteria().andBookIdEqualTo(successBook.getBookId());
+			bookService.updateByExampleSelective(successBook, example);
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -93,18 +110,20 @@ public class testBook {
 	 * @注释：增加卷
 	 */
 	@RequestMapping("addChapter")
-	public void addChapter(String description,HttpServletResponse response,HttpServletRequest request){
+	public void addChapter(@RequestBody Chapter chapter,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookChapter/add.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		chapter.setDescription(description);
 		HashMap<String,Object> map=RequestParamter.getChapterParamMap(chapter);
 		String msg=RequestParamter.sendData(connect, "POST",map);
 		log.debug(msg);
+		ObjectMapper obj=new ObjectMapper();
 		try {
+			Chapter successChapter=obj.readValue(msg, Chapter.class);
+			chapterService.insert(successChapter);
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
-			response.getWriter().write(msg);
-		} catch (IOException e) {
+			response.getWriter().write(msg);   //处理void返回值
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -114,18 +133,22 @@ public class testBook {
 	 * @注释：更新卷
 	 */
 	@RequestMapping("updateChapter")
-	public void updateChapter(String description,HttpServletResponse response,HttpServletRequest request){
+	public void updateChapter(@RequestBody Chapter chapter,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookChapter/update.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		chapter.setDescription(description);
 		HashMap<String,Object> map=RequestParamter.getChapterParamMap(chapter);
 		String msg=RequestParamter.sendData(connect, "POST",map);
 		log.debug(msg);
+		ObjectMapper obj=new ObjectMapper();
 		try {
+			Chapter successChapter=obj.readValue(msg, Chapter.class);
+			ChapterExample example=new ChapterExample();
+			example.createCriteria().andBookIdEqualTo(successChapter.getBookId()).andChapterIdEqualTo(successChapter.getChapterId());
+			chapterService.updateByExampleSelective(successChapter, example);
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
-			response.getWriter().write(msg);
-		} catch (IOException e) {
+			response.getWriter().write(msg);   //处理void返回值
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -134,7 +157,7 @@ public class testBook {
 	 * @data: 2016年12月11日
 	 * @注释：增加章节
 	 */
-	@RequestMapping("addSection")
+	/*@RequestMapping("addSection")
 	public void addSection(String content,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/add.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
@@ -154,11 +177,11 @@ public class testBook {
 			e.printStackTrace();
 		}
 	}
-	/**
+	*//**
 	 * @author fengchao
 	 * @data: 2016年12月11日
 	 * @注释：更新章节
-	 */
+	 *//*
 	@RequestMapping("updateSection")
 	public void updateSection(String content,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/update.json";
@@ -177,5 +200,5 @@ public class testBook {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

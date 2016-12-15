@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wyDemo.dao.ChapterMapper" >
+  <resultMap id="BaseResultMap" type="com.wyDemo.bean.Chapter" >
+    <result column="BOOK_ID" property="bookId" jdbcType="VARCHAR" />
+    <result column="BOOK_KEY" property="bookKey" jdbcType="VARCHAR" />
+    <result column="PRECHAPTER_ID" property="prechapterId" jdbcType="VARCHAR" />
+    <result column="PRECHAPTER_KEY" property="prechapterKey" jdbcType="VARCHAR" />
+    <result column="CHAPTER_KEY" property="chapterKey" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="PICS" property="pics" jdbcType="VARCHAR" />
+    <result column="CHAPTER_ID" property="chapterId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wyDemo.bean.Chapter" extends="BaseResultMap" >
+    <result column="DESCRIPTION" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BOOK_ID, BOOK_KEY, PRECHAPTER_ID, PRECHAPTER_KEY, CHAPTER_KEY, TITLE, PICS, CHAPTER_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    DESCRIPTION
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.wyDemo.bean.ChapterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from CHAPTER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wyDemo.bean.ChapterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from CHAPTER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.wyDemo.bean.ChapterExample" >
+    delete from CHAPTER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wyDemo.bean.Chapter" >
+    insert into CHAPTER (BOOK_ID, BOOK_KEY, PRECHAPTER_ID, 
+      PRECHAPTER_KEY, CHAPTER_KEY, TITLE, 
+      PICS, CHAPTER_ID, DESCRIPTION
+      )
+    values (#{bookId,jdbcType=VARCHAR}, #{bookKey,jdbcType=VARCHAR}, #{prechapterId,jdbcType=VARCHAR}, 
+      #{prechapterKey,jdbcType=VARCHAR}, #{chapterKey,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{pics,jdbcType=VARCHAR}, #{chapterId,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wyDemo.bean.Chapter" >
+    insert into CHAPTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        BOOK_ID,
+      </if>
+      <if test="bookKey != null" >
+        BOOK_KEY,
+      </if>
+      <if test="prechapterId != null" >
+        PRECHAPTER_ID,
+      </if>
+      <if test="prechapterKey != null" >
+        PRECHAPTER_KEY,
+      </if>
+      <if test="chapterKey != null" >
+        CHAPTER_KEY,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="pics != null" >
+        PICS,
+      </if>
+      <if test="chapterId != null" >
+        CHAPTER_ID,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        #{bookId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookKey != null" >
+        #{bookKey,jdbcType=VARCHAR},
+      </if>
+      <if test="prechapterId != null" >
+        #{prechapterId,jdbcType=VARCHAR},
+      </if>
+      <if test="prechapterKey != null" >
+        #{prechapterKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterKey != null" >
+        #{chapterKey,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null" >
+        #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterId != null" >
+        #{chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wyDemo.bean.ChapterExample" resultType="java.lang.Integer" >
+    select count(*) from CHAPTER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CHAPTER
+    <set >
+      <if test="record.bookId != null" >
+        BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookKey != null" >
+        BOOK_KEY = #{record.bookKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prechapterId != null" >
+        PRECHAPTER_ID = #{record.prechapterId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prechapterKey != null" >
+        PRECHAPTER_KEY = #{record.prechapterKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterKey != null" >
+        CHAPTER_KEY = #{record.chapterKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        TITLE = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pics != null" >
+        PICS = #{record.pics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterId != null" >
+        CHAPTER_ID = #{record.chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update CHAPTER
+    set BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
+      BOOK_KEY = #{record.bookKey,jdbcType=VARCHAR},
+      PRECHAPTER_ID = #{record.prechapterId,jdbcType=VARCHAR},
+      PRECHAPTER_KEY = #{record.prechapterKey,jdbcType=VARCHAR},
+      CHAPTER_KEY = #{record.chapterKey,jdbcType=VARCHAR},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      PICS = #{record.pics,jdbcType=VARCHAR},
+      CHAPTER_ID = #{record.chapterId,jdbcType=INTEGER},
+      DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CHAPTER
+    set BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
+      BOOK_KEY = #{record.bookKey,jdbcType=VARCHAR},
+      PRECHAPTER_ID = #{record.prechapterId,jdbcType=VARCHAR},
+      PRECHAPTER_KEY = #{record.prechapterKey,jdbcType=VARCHAR},
+      CHAPTER_KEY = #{record.chapterKey,jdbcType=VARCHAR},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      PICS = #{record.pics,jdbcType=VARCHAR},
+      CHAPTER_ID = #{record.chapterId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

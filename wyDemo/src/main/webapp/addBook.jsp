@@ -14,6 +14,35 @@
 <title>Description</title>
 </head>
 <body>
+    <div>
+    	<label>BookKey</label>
+    	<input type="text" id="bookKey" name="bookKey"/>
+    	<label>CategoryId</label>
+    	<input type="text" name="categoryId" id="categoryId">
+    	<label>标题</label>
+    	<input type="text" id="title" name="title"/>
+    	<label>付费方式</label>
+    	<select name="payType" id="payType">
+    		<option value="0">免费</option>
+    		<option value="1">付费</option>
+    	</select>
+    </div>
+    <div style="margin-top: 50px;margin-bottom: 50px">
+    	<label>价格</label>
+    	<input type="text" name="price" id="price">
+    	<label>作者</label>
+    	<input type="text" name="author" id="author">
+    	<label>出版社</label>
+    	<input type="text" name="publisher" id="publisher">
+    	<label>作者简介</label>
+    	<input type="text" name="authorDesc" id="authorDesc">
+    	<label>书籍状态</label>
+    	<select id="status" name="status">
+    	    <option value="0">连载</option>
+    	    <option value="1">完结</option>
+    	    <option value="2">试读非完整</option>
+    	</select>
+    </div>
 	<div id="container" name="content"></div>
     <div>
     	<button id="submit">提交</button>
