@@ -8,21 +8,27 @@ $(document).ready(function(){
     });
 	$("#submit").click(function(){
 		var text=ue.getPlainTxt();
+		var param={
+				"categoryId":$("#categoryId").val(),
+				"bookKey":$("#bookKey").val(),
+				"author":$("#author").val(),
+				"title":$("#title").val(),
+				"payType":$("#payType").val(),
+				"price":$("#price").val(),
+				"publisher":$("#publisher").val(),
+				"authorDesc":$("#authorDesc").val(),
+				"status":$("#status").val(),
+				"description":text
+			};
 		$.ajax({
-			type:"POST",
-			url:"/wyDemo/addBook",
-			data:{
-				categoryId:$("#categoryId").val(),
-				bookKey:$("#bookKey").val(),
-				author:$("#author").val(),
-				title:$("#title").val(),
-				payType:$("#payType").val(),
-				price:$("#price").val(),
-				publisher:$("#publisher").val(),
-				authorDesc:$("#authorDesc").val(),
-				status:$("#status").val(),
-				description:text
+			headers : {
+				'Accept' : 'application/json',
+				'Content-Type' : 'application/json'
 			},
+			type:"POST",
+			/*dataType:"json",*/
+			url:"/wyDemo/addBook",
+			data:JSON.stringify(param),
 			success:function(data){
 				alert(data);
 			},

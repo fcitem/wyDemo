@@ -17,6 +17,8 @@
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="PUBLISH_TIME" property="publishTime" jdbcType="INTEGER" />
     <result column="BOOK_TYPE" property="bookType" jdbcType="INTEGER" />
+    <result column="COVER" property="cover" jdbcType="VARCHAR" />
+    <result column="VIP_PRICE" property="vipPrice" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.wyDemo.bean.Book" extends="BaseResultMap" >
     <result column="DESCRIPTION" property="description" jdbcType="LONGVARCHAR" />
@@ -81,7 +83,7 @@
   </sql>
   <sql id="Base_Column_List" >
     BOOK_ID, BOOK_KEY, CATEGORY_ID, TITLE, URL, PRICE, PAY_TYPE, COVER_PIC, COVER_URL, 
-    AUTHOR, PUBLISHER, ISBN, STATUS, PUBLISH_TIME, BOOK_TYPE
+    AUTHOR, PUBLISHER, ISBN, STATUS, PUBLISH_TIME, BOOK_TYPE, COVER, VIP_PRICE
   </sql>
   <sql id="Blob_Column_List" >
     DESCRIPTION
@@ -95,7 +97,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from BOOK
+    from book
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -110,7 +112,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from BOOK
+    from book
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -119,27 +121,29 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.wyDemo.bean.BookExample" >
-    delete from BOOK
+    delete from book
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.wyDemo.bean.Book" >
-    insert into BOOK (BOOK_ID, BOOK_KEY, CATEGORY_ID, 
+    insert into book (BOOK_ID, BOOK_KEY, CATEGORY_ID, 
       TITLE, URL, PRICE, 
       PAY_TYPE, COVER_PIC, COVER_URL, 
       AUTHOR, PUBLISHER, ISBN, 
       STATUS, PUBLISH_TIME, BOOK_TYPE, 
-      DESCRIPTION)
+      COVER, VIP_PRICE, DESCRIPTION
+      )
     values (#{bookId,jdbcType=VARCHAR}, #{bookKey,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
       #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
       #{payType,jdbcType=INTEGER}, #{coverPic,jdbcType=VARCHAR}, #{coverUrl,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{publishTime,jdbcType=INTEGER}, #{bookType,jdbcType=INTEGER}, 
-      #{description,jdbcType=LONGVARCHAR})
+      #{cover,jdbcType=VARCHAR}, #{vipPrice,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.wyDemo.bean.Book" >
-    insert into BOOK
+    insert into book
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bookId != null" >
         BOOK_ID,
@@ -185,6 +189,12 @@
       </if>
       <if test="bookType != null" >
         BOOK_TYPE,
+      </if>
+      <if test="cover != null" >
+        COVER,
+      </if>
+      <if test="vipPrice != null" >
+        VIP_PRICE,
       </if>
       <if test="description != null" >
         DESCRIPTION,
@@ -236,19 +246,25 @@
       <if test="bookType != null" >
         #{bookType,jdbcType=INTEGER},
       </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="vipPrice != null" >
+        #{vipPrice,jdbcType=INTEGER},
+      </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.wyDemo.bean.BookExample" resultType="java.lang.Integer" >
-    select count(*) from BOOK
+    select count(*) from book
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update BOOK
+    update book
     <set >
       <if test="record.bookId != null" >
         BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
@@ -295,6 +311,12 @@
       <if test="record.bookType != null" >
         BOOK_TYPE = #{record.bookType,jdbcType=INTEGER},
       </if>
+      <if test="record.cover != null" >
+        COVER = #{record.cover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipPrice != null" >
+        VIP_PRICE = #{record.vipPrice,jdbcType=INTEGER},
+      </if>
       <if test="record.description != null" >
         DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -304,7 +326,7 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update BOOK
+    update book
     set BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
       BOOK_KEY = #{record.bookKey,jdbcType=VARCHAR},
       CATEGORY_ID = #{record.categoryId,jdbcType=INTEGER},
@@ -320,13 +342,15 @@
       STATUS = #{record.status,jdbcType=INTEGER},
       PUBLISH_TIME = #{record.publishTime,jdbcType=INTEGER},
       BOOK_TYPE = #{record.bookType,jdbcType=INTEGER},
+      COVER = #{record.cover,jdbcType=VARCHAR},
+      VIP_PRICE = #{record.vipPrice,jdbcType=INTEGER},
       DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update BOOK
+    update book
     set BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
       BOOK_KEY = #{record.bookKey,jdbcType=VARCHAR},
       CATEGORY_ID = #{record.categoryId,jdbcType=INTEGER},
@@ -341,7 +365,9 @@
       ISBN = #{record.isbn,jdbcType=VARCHAR},
       STATUS = #{record.status,jdbcType=INTEGER},
       PUBLISH_TIME = #{record.publishTime,jdbcType=INTEGER},
-      BOOK_TYPE = #{record.bookType,jdbcType=INTEGER}
+      BOOK_TYPE = #{record.bookType,jdbcType=INTEGER},
+      COVER = #{record.cover,jdbcType=VARCHAR},
+      VIP_PRICE = #{record.vipPrice,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

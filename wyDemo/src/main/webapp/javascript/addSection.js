@@ -8,10 +8,7 @@ $(document).ready(function(){
     });
 	$("#submit").click(function(){
 		var text=ue.getPlainTxt();
-		$.ajax({
-			type:"POST",
-			url:"/wyDemo/addSection",
-			data:{
+		var param={
 				bookKey:$("#bookKey").val(),
 				bookId:$("#bookId").val(),
 				preSectionId:$("#preSectionId").val(),
@@ -23,7 +20,15 @@ $(document).ready(function(){
 				price:$("#price").val(),
 				title:$("#title").val(),
 				content:text
+		};
+		$.ajax({
+			headers : {
+				'Accept' : 'application/json',
+				'Content-Type' : 'application/json'
 			},
+			type:"POST",
+			url:"/wyDemo/addSection",
+			data:JSON.stringify(param),
 			success:function(data){
 				alert(data);
 			},

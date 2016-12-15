@@ -75,7 +75,7 @@ public class RequestParamter {
 		map.put("bookKey",section.getBookKey());
 		map.put("chapterKey", section.getChapterKey());
 		map.put("title", section.getTitle());
-		map.put("content", section.getContent());
+		map.put("content", ChangeContent(section.getContent()));
 		map.put("sectionKey",section.getSectionKey());
 		map.put("preSectionId", section.getPreSectionId());
 		map.put("needPay", section.getNeedPay());

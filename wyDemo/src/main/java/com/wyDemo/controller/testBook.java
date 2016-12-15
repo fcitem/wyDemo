@@ -11,11 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wyDemo.bean.Book;
 import com.wyDemo.bean.BookExample;
 import com.wyDemo.bean.Chapter;
 import com.wyDemo.bean.ChapterExample;
+import com.wyDemo.bean.Section;
+import com.wyDemo.bean.SectionExample;
 import com.wyDemo.service.BookService;
 import com.wyDemo.service.ChapterService;
 import com.wyDemo.service.SectionService;
@@ -38,29 +41,6 @@ public class testBook {
 	@Autowired
 	SectionService sectionService;
 	HttpConnect connect;
-	public testBook() {
-//		book.setCategoryId(1);
-//		book.setBookType(1);
-//		book.setStatus(2);
-//		book.setPrice(3);
-//		book.setPayType(1);
-//		book.setBookKey("book_1001");
-//		book.setAuthor("一束干花");
-//		book.setTitle("测试的书");
-//		chapter.setTitle("前言");
-////		chapter.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
-//		chapter.setBookKey("book_1001");
-//		chapter.setPreChapterId("");
-//		chapter.setChapterKey("001");
-////		section.setBookId("ts_cafea46f60cb4b2f85ce8bcc4566708d_4");
-//		section.setBookKey("book_1001");
-//		section.setChapterKey("001");
-//		section.setSectionKey("0011");
-//		section.setPreSectionId("");
-//		section.setTitle("父亲的希望");
-//		section.setNeedPay(0);   //1付费
-//		section.setPrice(3);
-	}
 	/**
 	 * @author fengchao
 	 * @data: 2016年12月11日
@@ -75,7 +55,9 @@ public class testBook {
 		log.debug(msg);
 		ObjectMapper obj=new ObjectMapper();
 		try {
-			Book successBook=obj.readValue(msg, Book.class);
+			JsonNode node=obj.readTree(msg);
+			Book successBook=obj.readValue(node.get("book").toString(), Book.class);
+			successBook.setDescription("");
 			bookService.insertSelective(successBook);
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
@@ -93,10 +75,16 @@ public class testBook {
 		log.debug(msg);
 		ObjectMapper obj=new ObjectMapper();
 		try {
-			Book successBook=obj.readValue(msg, Book.class);
+			JsonNode node=obj.readTree(msg);
+			Book successBook=obj.readValue(node.get("book").toString(), Book.class);
 			BookExample example=new BookExample();
 			example.createCriteria().andBookIdEqualTo(successBook.getBookId());
-			bookService.updateByExampleSelective(successBook, example);
+			if(bookService.countByExample(example)==0){
+				bookService.insertSelective(successBook);
+			}
+			else{
+				bookService.updateByExampleSelective(successBook, example);
+			}
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
@@ -118,8 +106,10 @@ public class testBook {
 		log.debug(msg);
 		ObjectMapper obj=new ObjectMapper();
 		try {
-			Chapter successChapter=obj.readValue(msg, Chapter.class);
-			chapterService.insert(successChapter);
+			JsonNode node=obj.readTree(msg);
+			Chapter successChapter=obj.readValue(node.get("chapter").toString(), Chapter.class);
+			successChapter.setDescription("");
+			chapterService.insertSelective(successChapter);
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
@@ -141,7 +131,9 @@ public class testBook {
 		log.debug(msg);
 		ObjectMapper obj=new ObjectMapper();
 		try {
-			Chapter successChapter=obj.readValue(msg, Chapter.class);
+			JsonNode node=obj.readTree(msg);
+			Chapter successChapter=obj.readValue(node.get("chapter").toString(), Chapter.class);
+			successChapter.setDescription("");
 			ChapterExample example=new ChapterExample();
 			example.createCriteria().andBookIdEqualTo(successChapter.getBookId()).andChapterIdEqualTo(successChapter.getChapterId());
 			chapterService.updateByExampleSelective(successChapter, example);
@@ -157,48 +149,51 @@ public class testBook {
 	 * @data: 2016年12月11日
 	 * @注释：增加章节
 	 */
-	/*@RequestMapping("addSection")
-	public void addSection(String content,HttpServletResponse response,HttpServletRequest request){
+	@RequestMapping("addSection")
+	public void addSection(@RequestBody Section section,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/add.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		section.setTitle("第八章 继续手写");
-		section.setSectionKey("0018");
-		section.setPreSectionKey("0017");
-//		section.setNeedPay(1);  //收费
-		section.setContent(RequestParamter.ChangeContent(content));
 		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
 		String msg=RequestParamter.sendData(connect, "POST",map);
 		log.debug(msg);
+		ObjectMapper obj=new ObjectMapper();
 		try {
+			JsonNode node=obj.readTree(msg);
+			Section successSection=obj.readValue(node.get("section").toString(), Section.class);
+			successSection.setContent("");
+			sectionService.insertSelective(successSection);
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
-			response.getWriter().write(msg);
-		} catch (IOException e) {
+			response.getWriter().write(msg);   //处理void返回值
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	*//**
+	/**
 	 * @author fengchao
 	 * @data: 2016年12月11日
 	 * @注释：更新章节
-	 *//*
+	 */
 	@RequestMapping("updateSection")
-	public void updateSection(String content,HttpServletResponse response,HttpServletRequest request){
+	public void updateSection(@RequestBody Section section,HttpServletResponse response,HttpServletRequest request){
 		String url="http://testapi.yuedu.163.com/bookSection/update.json";
 		HttpConnect connect=HttpConnect.getHttpConnect(url);
-		section.setTitle("第一章 初到人间");
-		section.setSectionKey("0011");
-//		section.setPreSectionKey("0011");
-		section.setContent(RequestParamter.ChangeContent(content));
 		HashMap<String,Object> map=RequestParamter.getSectionParamMap(section);
 		String msg=RequestParamter.sendData(connect, "POST",map);
 		log.debug(msg);
+		ObjectMapper obj=new ObjectMapper();
 		try {
+			JsonNode node=obj.readTree(msg);
+			Section successSection=obj.readValue(node.get("section").toString(), Section.class);
+			successSection.setContent("");
+			SectionExample example=new SectionExample();
+			example.createCriteria().andBookIdEqualTo(successSection.getBookId()).andChapterIdEqualTo(successSection.getChapterId()).andSectionIdEqualTo(successSection.getSectionId());
+			sectionService.updateByExampleSelective(successSection, example);
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
-			response.getWriter().write(msg);
-		} catch (IOException e) {
+			response.getWriter().write(msg);   //处理void返回值
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 }

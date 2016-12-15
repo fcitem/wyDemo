@@ -8,10 +8,7 @@ $(document).ready(function(){
     });
 	$("#submit").click(function(){
 		var text=ue.getPlainTxt();
-		$.ajax({
-			type:"POST",
-			url:"/wyDemo/addChapter",
-			data:{
+		var param={
 				bookKey:$("#bookKey").val(),
 				bookId:$("#bookId").val(),
 				preChapterId:$("#preChapterId").val(),
@@ -19,7 +16,15 @@ $(document).ready(function(){
 				chapterKey:$("#chapterKey").val(),
 				title:$("#title").val(),
 				description:text
+		};
+		$.ajax({
+			headers : {
+				'Accept' : 'application/json',
+				'Content-Type' : 'application/json'
 			},
+			type:"POST",
+			url:"/wyDemo/addChapter",
+			data:JSON.stringify(param),
 			success:function(data){
 				alert(data);
 			},

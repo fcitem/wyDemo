@@ -31,9 +31,23 @@ public class Book {
 
     private Integer bookType;
 
-    private String description;
+    private String cover;
 
-    public String getBookId() {
+    private Integer vipPrice;
+
+    private String description;
+    
+    private String KeyName;
+
+    public String getKeyName() {
+		return KeyName;
+	}
+
+	public void setKeyName(String keyName) {
+		KeyName = keyName;
+	}
+
+	public String getBookId() {
         return bookId;
     }
 
@@ -151,6 +165,22 @@ public class Book {
 
     public void setBookType(Integer bookType) {
         this.bookType = bookType;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover == null ? null : cover.trim();
+    }
+
+    public Integer getVipPrice() {
+        return vipPrice;
+    }
+
+    public void setVipPrice(Integer vipPrice) {
+        this.vipPrice = vipPrice;
     }
 
     public String getDescription() {

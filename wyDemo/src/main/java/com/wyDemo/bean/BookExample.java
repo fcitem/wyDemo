@@ -1093,6 +1093,136 @@ public class BookExample {
             addCriterion("BOOK_TYPE not between", value1, value2, "bookType");
             return (Criteria) this;
         }
+
+        public Criteria andCoverIsNull() {
+            addCriterion("COVER is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIsNotNull() {
+            addCriterion("COVER is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverEqualTo(String value) {
+            addCriterion("COVER =", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverNotEqualTo(String value) {
+            addCriterion("COVER <>", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverGreaterThan(String value) {
+            addCriterion("COVER >", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverGreaterThanOrEqualTo(String value) {
+            addCriterion("COVER >=", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverLessThan(String value) {
+            addCriterion("COVER <", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverLessThanOrEqualTo(String value) {
+            addCriterion("COVER <=", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverLike(String value) {
+            addCriterion("COVER like", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverNotLike(String value) {
+            addCriterion("COVER not like", value, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIn(List<String> values) {
+            addCriterion("COVER in", values, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverNotIn(List<String> values) {
+            addCriterion("COVER not in", values, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverBetween(String value1, String value2) {
+            addCriterion("COVER between", value1, value2, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverNotBetween(String value1, String value2) {
+            addCriterion("COVER not between", value1, value2, "cover");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceIsNull() {
+            addCriterion("VIP_PRICE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceIsNotNull() {
+            addCriterion("VIP_PRICE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceEqualTo(Integer value) {
+            addCriterion("VIP_PRICE =", value, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceNotEqualTo(Integer value) {
+            addCriterion("VIP_PRICE <>", value, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceGreaterThan(Integer value) {
+            addCriterion("VIP_PRICE >", value, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceGreaterThanOrEqualTo(Integer value) {
+            addCriterion("VIP_PRICE >=", value, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceLessThan(Integer value) {
+            addCriterion("VIP_PRICE <", value, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceLessThanOrEqualTo(Integer value) {
+            addCriterion("VIP_PRICE <=", value, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceIn(List<Integer> values) {
+            addCriterion("VIP_PRICE in", values, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceNotIn(List<Integer> values) {
+            addCriterion("VIP_PRICE not in", values, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceBetween(Integer value1, Integer value2) {
+            addCriterion("VIP_PRICE between", value1, value2, "vipPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andVipPriceNotBetween(Integer value1, Integer value2) {
+            addCriterion("VIP_PRICE not between", value1, value2, "vipPrice");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
