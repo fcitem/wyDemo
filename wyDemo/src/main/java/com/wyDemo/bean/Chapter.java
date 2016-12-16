@@ -5,9 +5,9 @@ public class Chapter {
 
     private String bookKey;
 
-    private String prechapterId;
+    private String preChapterId;
 
-    private String prechapterKey;
+    private String preChapterKey;
 
     private String chapterKey;
 
@@ -15,7 +15,7 @@ public class Chapter {
 
     private String pics;
 
-    private Integer chapterId;
+    private String chapterId;
 
     private String description;
 
@@ -35,20 +35,20 @@ public class Chapter {
         this.bookKey = bookKey == null ? null : bookKey.trim();
     }
 
-    public String getPrechapterId() {
-        return prechapterId;
+    public String getPreChapterId() {
+        return preChapterId;
     }
 
-    public void setPrechapterId(String prechapterId) {
-        this.prechapterId = prechapterId == null ? null : prechapterId.trim();
+    public void setPreChapterId(String preChapterId) {
+        this.preChapterId = preChapterId == null ? null : preChapterId.trim();
     }
 
-    public String getPrechapterKey() {
-        return prechapterKey;
+    public String getPreChapterKey() {
+        return preChapterKey;
     }
 
-    public void setPrechapterKey(String prechapterKey) {
-        this.prechapterKey = prechapterKey == null ? null : prechapterKey.trim();
+    public void setPreChapterKey(String preChapterKey) {
+        this.preChapterKey = preChapterKey == null ? null : preChapterKey.trim();
     }
 
     public String getChapterKey() {
@@ -75,12 +75,12 @@ public class Chapter {
         this.pics = pics == null ? null : pics.trim();
     }
 
-    public Integer getChapterId() {
+    public String getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(Integer chapterId) {
-        this.chapterId = chapterId;
+    public void setChapterId(String chapterId) {
+        this.chapterId = chapterId == null ? null : chapterId.trim();
     }
 
     public String getDescription() {

@@ -34,7 +34,7 @@
     	<label>标题</label>
     	<input type="text" id="title" name="title"/>
     	<label>是否付费</label>
-    	<select name="payType" id="payType">
+    	<select name="needPay" id="needPay">
     		<option value="0">免费</option>
     		<option value="1">付费</option>
     	</select>

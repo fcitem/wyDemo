@@ -56,9 +56,11 @@ public class testBook {
 		ObjectMapper obj=new ObjectMapper();
 		try {
 			JsonNode node=obj.readTree(msg);
-			Book successBook=obj.readValue(node.get("book").toString(), Book.class);
-			successBook.setDescription("");
-			bookService.insertSelective(successBook);
+			if(msg!=null&&node.get("code").toString().equals("200")){
+				Book successBook=obj.readValue(node.get("book").toString(), Book.class);
+				successBook.setDescription("");
+				bookService.insertSelective(successBook);
+			}
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
@@ -76,14 +78,16 @@ public class testBook {
 		ObjectMapper obj=new ObjectMapper();
 		try {
 			JsonNode node=obj.readTree(msg);
-			Book successBook=obj.readValue(node.get("book").toString(), Book.class);
-			BookExample example=new BookExample();
-			example.createCriteria().andBookIdEqualTo(successBook.getBookId());
-			if(bookService.countByExample(example)==0){
-				bookService.insertSelective(successBook);
-			}
-			else{
-				bookService.updateByExampleSelective(successBook, example);
+			if(msg!=null&&node.get("code").toString().equals("200")){
+				Book successBook=obj.readValue(node.get("book").toString(), Book.class);
+				BookExample example=new BookExample();
+				example.createCriteria().andBookIdEqualTo(successBook.getBookId());
+				if(bookService.countByExample(example)==0){
+					bookService.insertSelective(successBook);
+				}
+				else{
+					bookService.updateByExampleSelective(successBook, example);
+				}
 			}
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
@@ -107,9 +111,11 @@ public class testBook {
 		ObjectMapper obj=new ObjectMapper();
 		try {
 			JsonNode node=obj.readTree(msg);
-			Chapter successChapter=obj.readValue(node.get("chapter").toString(), Chapter.class);
-			successChapter.setDescription("");
-			chapterService.insertSelective(successChapter);
+			if(msg!=null&&node.get("code").toString().equals("200")){
+				Chapter successChapter=obj.readValue(node.get("chapter").toString(), Chapter.class);
+				successChapter.setDescription("");
+				chapterService.insertSelective(successChapter);
+			}
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
@@ -132,11 +138,18 @@ public class testBook {
 		ObjectMapper obj=new ObjectMapper();
 		try {
 			JsonNode node=obj.readTree(msg);
-			Chapter successChapter=obj.readValue(node.get("chapter").toString(), Chapter.class);
-			successChapter.setDescription("");
-			ChapterExample example=new ChapterExample();
-			example.createCriteria().andBookIdEqualTo(successChapter.getBookId()).andChapterIdEqualTo(successChapter.getChapterId());
-			chapterService.updateByExampleSelective(successChapter, example);
+			if(msg!=null&&node.get("code").toString().equals("200")){
+				Chapter successChapter=obj.readValue(node.get("chapter").toString(), Chapter.class);
+				successChapter.setDescription("");
+				ChapterExample example=new ChapterExample();
+				example.createCriteria().andBookIdEqualTo(successChapter.getBookId()).andChapterIdEqualTo(successChapter.getChapterId());
+				if(chapterService.countByExample(example)==0){
+					chapterService.insertSelective(successChapter);
+				}
+				else{
+					chapterService.updateByExampleSelective(successChapter, example);
+				}
+			}
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
@@ -159,9 +172,11 @@ public class testBook {
 		ObjectMapper obj=new ObjectMapper();
 		try {
 			JsonNode node=obj.readTree(msg);
-			Section successSection=obj.readValue(node.get("section").toString(), Section.class);
-			successSection.setContent("");
-			sectionService.insertSelective(successSection);
+			if(msg!=null&&node.get("code").toString().equals("200")){
+				Section successSection=obj.readValue(node.get("section").toString(), Section.class);
+				successSection.setContent("");
+				sectionService.insertSelective(successSection);
+			}
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值
@@ -184,11 +199,18 @@ public class testBook {
 		ObjectMapper obj=new ObjectMapper();
 		try {
 			JsonNode node=obj.readTree(msg);
-			Section successSection=obj.readValue(node.get("section").toString(), Section.class);
-			successSection.setContent("");
-			SectionExample example=new SectionExample();
-			example.createCriteria().andBookIdEqualTo(successSection.getBookId()).andChapterIdEqualTo(successSection.getChapterId()).andSectionIdEqualTo(successSection.getSectionId());
-			sectionService.updateByExampleSelective(successSection, example);
+			if(msg!=null&&node.get("code").toString().equals("200")){
+				Section successSection=obj.readValue(node.get("section").toString(), Section.class);
+				successSection.setContent("");
+				SectionExample example=new SectionExample();
+				example.createCriteria().andBookIdEqualTo(successSection.getBookId()).andChapterIdEqualTo(successSection.getChapterId()).andSectionIdEqualTo(successSection.getSectionId());
+				if(sectionService.countByExample(example)==0){
+					sectionService.insertSelective(successSection);
+				}
+				else{
+					sectionService.updateByExampleSelective(successSection, example);
+				}
+			}
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(msg);   //处理void返回值

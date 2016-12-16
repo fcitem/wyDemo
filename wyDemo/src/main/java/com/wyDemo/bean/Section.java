@@ -25,9 +25,9 @@ public class Section {
 
     private Integer price;
 
-    private Integer worldCount;
+    private Integer wordcount;
 
-    private Integer sectionId;
+    private String sectionId;
 
     private String content;
 
@@ -127,20 +127,20 @@ public class Section {
         this.price = price;
     }
 
-    public Integer getWorldCount() {
-        return worldCount;
+    public Integer getWordcount() {
+        return wordcount;
     }
 
-    public void setWorldCount(Integer worldCount) {
-        this.worldCount = worldCount;
+    public void setWordcount(Integer wordcount) {
+        this.wordcount = wordcount;
     }
 
-    public Integer getSectionId() {
+    public String getSectionId() {
         return sectionId;
     }
 
-    public void setSectionId(Integer sectionId) {
-        this.sectionId = sectionId;
+    public void setSectionId(String sectionId) {
+        this.sectionId = sectionId == null ? null : sectionId.trim();
     }
 
     public String getContent() {

@@ -60,7 +60,8 @@ public class RequestParamter {
 		map.put("description", chapter.getDescription());
 		/*map.put("bookId", chapter.getBookId());*/
 		map.put("bookKey",chapter.getBookKey());
-		map.put("preChapterId",chapter.getPrechapterId());
+		map.put("preChapterId",chapter.getPreChapterId());
+		map.put("preChapterKey",chapter.getPreChapterKey());
 		map.put("chapterKey", chapter.getChapterKey());
 		return map;
 	}
@@ -78,6 +79,7 @@ public class RequestParamter {
 		map.put("content", ChangeContent(section.getContent()));
 		map.put("sectionKey",section.getSectionKey());
 		map.put("preSectionId", section.getPreSectionId());
+		map.put("preSectionKey", section.getPreSectionKey());
 		map.put("needPay", section.getNeedPay());
 		map.put("price", section.getPrice());
 		return map;

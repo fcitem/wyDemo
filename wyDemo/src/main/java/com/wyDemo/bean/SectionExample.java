@@ -914,63 +914,63 @@ public class SectionExample {
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountIsNull() {
-            addCriterion("WORLD_COUNT is null");
+        public Criteria andWordcountIsNull() {
+            addCriterion("WORDCOUNT is null");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountIsNotNull() {
-            addCriterion("WORLD_COUNT is not null");
+        public Criteria andWordcountIsNotNull() {
+            addCriterion("WORDCOUNT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountEqualTo(Integer value) {
-            addCriterion("WORLD_COUNT =", value, "worldCount");
+        public Criteria andWordcountEqualTo(Integer value) {
+            addCriterion("WORDCOUNT =", value, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountNotEqualTo(Integer value) {
-            addCriterion("WORLD_COUNT <>", value, "worldCount");
+        public Criteria andWordcountNotEqualTo(Integer value) {
+            addCriterion("WORDCOUNT <>", value, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountGreaterThan(Integer value) {
-            addCriterion("WORLD_COUNT >", value, "worldCount");
+        public Criteria andWordcountGreaterThan(Integer value) {
+            addCriterion("WORDCOUNT >", value, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("WORLD_COUNT >=", value, "worldCount");
+        public Criteria andWordcountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("WORDCOUNT >=", value, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountLessThan(Integer value) {
-            addCriterion("WORLD_COUNT <", value, "worldCount");
+        public Criteria andWordcountLessThan(Integer value) {
+            addCriterion("WORDCOUNT <", value, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountLessThanOrEqualTo(Integer value) {
-            addCriterion("WORLD_COUNT <=", value, "worldCount");
+        public Criteria andWordcountLessThanOrEqualTo(Integer value) {
+            addCriterion("WORDCOUNT <=", value, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountIn(List<Integer> values) {
-            addCriterion("WORLD_COUNT in", values, "worldCount");
+        public Criteria andWordcountIn(List<Integer> values) {
+            addCriterion("WORDCOUNT in", values, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountNotIn(List<Integer> values) {
-            addCriterion("WORLD_COUNT not in", values, "worldCount");
+        public Criteria andWordcountNotIn(List<Integer> values) {
+            addCriterion("WORDCOUNT not in", values, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountBetween(Integer value1, Integer value2) {
-            addCriterion("WORLD_COUNT between", value1, value2, "worldCount");
+        public Criteria andWordcountBetween(Integer value1, Integer value2) {
+            addCriterion("WORDCOUNT between", value1, value2, "wordcount");
             return (Criteria) this;
         }
 
-        public Criteria andWorldCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("WORLD_COUNT not between", value1, value2, "worldCount");
+        public Criteria andWordcountNotBetween(Integer value1, Integer value2) {
+            addCriterion("WORDCOUNT not between", value1, value2, "wordcount");
             return (Criteria) this;
         }
 
@@ -984,52 +984,62 @@ public class SectionExample {
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdEqualTo(Integer value) {
+        public Criteria andSectionIdEqualTo(String value) {
             addCriterion("SECTION_ID =", value, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdNotEqualTo(Integer value) {
+        public Criteria andSectionIdNotEqualTo(String value) {
             addCriterion("SECTION_ID <>", value, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdGreaterThan(Integer value) {
+        public Criteria andSectionIdGreaterThan(String value) {
             addCriterion("SECTION_ID >", value, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andSectionIdGreaterThanOrEqualTo(String value) {
             addCriterion("SECTION_ID >=", value, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdLessThan(Integer value) {
+        public Criteria andSectionIdLessThan(String value) {
             addCriterion("SECTION_ID <", value, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdLessThanOrEqualTo(Integer value) {
+        public Criteria andSectionIdLessThanOrEqualTo(String value) {
             addCriterion("SECTION_ID <=", value, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdIn(List<Integer> values) {
+        public Criteria andSectionIdLike(String value) {
+            addCriterion("SECTION_ID like", value, "sectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSectionIdNotLike(String value) {
+            addCriterion("SECTION_ID not like", value, "sectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSectionIdIn(List<String> values) {
             addCriterion("SECTION_ID in", values, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdNotIn(List<Integer> values) {
+        public Criteria andSectionIdNotIn(List<String> values) {
             addCriterion("SECTION_ID not in", values, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdBetween(Integer value1, Integer value2) {
+        public Criteria andSectionIdBetween(String value1, String value2) {
             addCriterion("SECTION_ID between", value1, value2, "sectionId");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andSectionIdNotBetween(String value1, String value2) {
             addCriterion("SECTION_ID not between", value1, value2, "sectionId");
             return (Criteria) this;
         }

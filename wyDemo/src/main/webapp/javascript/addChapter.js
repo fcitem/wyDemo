@@ -8,6 +8,7 @@ $(document).ready(function(){
     });
 	$("#submit").click(function(){
 		var text=ue.getPlainTxt();
+		debugger;
 		var param={
 				bookKey:$("#bookKey").val(),
 				bookId:$("#bookId").val(),

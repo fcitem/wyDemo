@@ -244,143 +244,143 @@ public class ChapterExample {
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdIsNull() {
-            addCriterion("PRECHAPTER_ID is null");
+        public Criteria andPreChapterIdIsNull() {
+            addCriterion("PRE_CHAPTER_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdIsNotNull() {
-            addCriterion("PRECHAPTER_ID is not null");
+        public Criteria andPreChapterIdIsNotNull() {
+            addCriterion("PRE_CHAPTER_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdEqualTo(String value) {
-            addCriterion("PRECHAPTER_ID =", value, "prechapterId");
+        public Criteria andPreChapterIdEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_ID =", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdNotEqualTo(String value) {
-            addCriterion("PRECHAPTER_ID <>", value, "prechapterId");
+        public Criteria andPreChapterIdNotEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_ID <>", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdGreaterThan(String value) {
-            addCriterion("PRECHAPTER_ID >", value, "prechapterId");
+        public Criteria andPreChapterIdGreaterThan(String value) {
+            addCriterion("PRE_CHAPTER_ID >", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdGreaterThanOrEqualTo(String value) {
-            addCriterion("PRECHAPTER_ID >=", value, "prechapterId");
+        public Criteria andPreChapterIdGreaterThanOrEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_ID >=", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdLessThan(String value) {
-            addCriterion("PRECHAPTER_ID <", value, "prechapterId");
+        public Criteria andPreChapterIdLessThan(String value) {
+            addCriterion("PRE_CHAPTER_ID <", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdLessThanOrEqualTo(String value) {
-            addCriterion("PRECHAPTER_ID <=", value, "prechapterId");
+        public Criteria andPreChapterIdLessThanOrEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_ID <=", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdLike(String value) {
-            addCriterion("PRECHAPTER_ID like", value, "prechapterId");
+        public Criteria andPreChapterIdLike(String value) {
+            addCriterion("PRE_CHAPTER_ID like", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdNotLike(String value) {
-            addCriterion("PRECHAPTER_ID not like", value, "prechapterId");
+        public Criteria andPreChapterIdNotLike(String value) {
+            addCriterion("PRE_CHAPTER_ID not like", value, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdIn(List<String> values) {
-            addCriterion("PRECHAPTER_ID in", values, "prechapterId");
+        public Criteria andPreChapterIdIn(List<String> values) {
+            addCriterion("PRE_CHAPTER_ID in", values, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdNotIn(List<String> values) {
-            addCriterion("PRECHAPTER_ID not in", values, "prechapterId");
+        public Criteria andPreChapterIdNotIn(List<String> values) {
+            addCriterion("PRE_CHAPTER_ID not in", values, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdBetween(String value1, String value2) {
-            addCriterion("PRECHAPTER_ID between", value1, value2, "prechapterId");
+        public Criteria andPreChapterIdBetween(String value1, String value2) {
+            addCriterion("PRE_CHAPTER_ID between", value1, value2, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterIdNotBetween(String value1, String value2) {
-            addCriterion("PRECHAPTER_ID not between", value1, value2, "prechapterId");
+        public Criteria andPreChapterIdNotBetween(String value1, String value2) {
+            addCriterion("PRE_CHAPTER_ID not between", value1, value2, "preChapterId");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyIsNull() {
-            addCriterion("PRECHAPTER_KEY is null");
+        public Criteria andPreChapterKeyIsNull() {
+            addCriterion("PRE_CHAPTER_KEY is null");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyIsNotNull() {
-            addCriterion("PRECHAPTER_KEY is not null");
+        public Criteria andPreChapterKeyIsNotNull() {
+            addCriterion("PRE_CHAPTER_KEY is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyEqualTo(String value) {
-            addCriterion("PRECHAPTER_KEY =", value, "prechapterKey");
+        public Criteria andPreChapterKeyEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_KEY =", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyNotEqualTo(String value) {
-            addCriterion("PRECHAPTER_KEY <>", value, "prechapterKey");
+        public Criteria andPreChapterKeyNotEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_KEY <>", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyGreaterThan(String value) {
-            addCriterion("PRECHAPTER_KEY >", value, "prechapterKey");
+        public Criteria andPreChapterKeyGreaterThan(String value) {
+            addCriterion("PRE_CHAPTER_KEY >", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyGreaterThanOrEqualTo(String value) {
-            addCriterion("PRECHAPTER_KEY >=", value, "prechapterKey");
+        public Criteria andPreChapterKeyGreaterThanOrEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_KEY >=", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyLessThan(String value) {
-            addCriterion("PRECHAPTER_KEY <", value, "prechapterKey");
+        public Criteria andPreChapterKeyLessThan(String value) {
+            addCriterion("PRE_CHAPTER_KEY <", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyLessThanOrEqualTo(String value) {
-            addCriterion("PRECHAPTER_KEY <=", value, "prechapterKey");
+        public Criteria andPreChapterKeyLessThanOrEqualTo(String value) {
+            addCriterion("PRE_CHAPTER_KEY <=", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyLike(String value) {
-            addCriterion("PRECHAPTER_KEY like", value, "prechapterKey");
+        public Criteria andPreChapterKeyLike(String value) {
+            addCriterion("PRE_CHAPTER_KEY like", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyNotLike(String value) {
-            addCriterion("PRECHAPTER_KEY not like", value, "prechapterKey");
+        public Criteria andPreChapterKeyNotLike(String value) {
+            addCriterion("PRE_CHAPTER_KEY not like", value, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyIn(List<String> values) {
-            addCriterion("PRECHAPTER_KEY in", values, "prechapterKey");
+        public Criteria andPreChapterKeyIn(List<String> values) {
+            addCriterion("PRE_CHAPTER_KEY in", values, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyNotIn(List<String> values) {
-            addCriterion("PRECHAPTER_KEY not in", values, "prechapterKey");
+        public Criteria andPreChapterKeyNotIn(List<String> values) {
+            addCriterion("PRE_CHAPTER_KEY not in", values, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyBetween(String value1, String value2) {
-            addCriterion("PRECHAPTER_KEY between", value1, value2, "prechapterKey");
+        public Criteria andPreChapterKeyBetween(String value1, String value2) {
+            addCriterion("PRE_CHAPTER_KEY between", value1, value2, "preChapterKey");
             return (Criteria) this;
         }
 
-        public Criteria andPrechapterKeyNotBetween(String value1, String value2) {
-            addCriterion("PRECHAPTER_KEY not between", value1, value2, "prechapterKey");
+        public Criteria andPreChapterKeyNotBetween(String value1, String value2) {
+            addCriterion("PRE_CHAPTER_KEY not between", value1, value2, "preChapterKey");
             return (Criteria) this;
         }
 
@@ -604,52 +604,62 @@ public class ChapterExample {
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdEqualTo(Integer value) {
+        public Criteria andChapterIdEqualTo(String value) {
             addCriterion("CHAPTER_ID =", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdNotEqualTo(Integer value) {
+        public Criteria andChapterIdNotEqualTo(String value) {
             addCriterion("CHAPTER_ID <>", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdGreaterThan(Integer value) {
+        public Criteria andChapterIdGreaterThan(String value) {
             addCriterion("CHAPTER_ID >", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andChapterIdGreaterThanOrEqualTo(String value) {
             addCriterion("CHAPTER_ID >=", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdLessThan(Integer value) {
+        public Criteria andChapterIdLessThan(String value) {
             addCriterion("CHAPTER_ID <", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdLessThanOrEqualTo(Integer value) {
+        public Criteria andChapterIdLessThanOrEqualTo(String value) {
             addCriterion("CHAPTER_ID <=", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdIn(List<Integer> values) {
+        public Criteria andChapterIdLike(String value) {
+            addCriterion("CHAPTER_ID like", value, "chapterId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterIdNotLike(String value) {
+            addCriterion("CHAPTER_ID not like", value, "chapterId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterIdIn(List<String> values) {
             addCriterion("CHAPTER_ID in", values, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdNotIn(List<Integer> values) {
+        public Criteria andChapterIdNotIn(List<String> values) {
             addCriterion("CHAPTER_ID not in", values, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdBetween(Integer value1, Integer value2) {
+        public Criteria andChapterIdBetween(String value1, String value2) {
             addCriterion("CHAPTER_ID between", value1, value2, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andChapterIdNotBetween(String value1, String value2) {
             addCriterion("CHAPTER_ID not between", value1, value2, "chapterId");
             return (Criteria) this;
         }

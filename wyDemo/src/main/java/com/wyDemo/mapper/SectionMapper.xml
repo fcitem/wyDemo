@@ -14,8 +14,8 @@
     <result column="PUBLISH_TIME" property="publishTime" jdbcType="INTEGER" />
     <result column="NEED_PAY" property="needPay" jdbcType="INTEGER" />
     <result column="PRICE" property="price" jdbcType="INTEGER" />
-    <result column="WORLD_COUNT" property="worldCount" jdbcType="INTEGER" />
-    <result column="SECTION_ID" property="sectionId" jdbcType="INTEGER" />
+    <result column="WORDCOUNT" property="wordcount" jdbcType="INTEGER" />
+    <result column="SECTION_ID" property="sectionId" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.wyDemo.bean.Section" extends="BaseResultMap" >
     <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
@@ -80,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List" >
     BOOK_ID, BOOK_KEY, CHAPTER_ID, CHAPTER_KEY, PRE_SECTION_ID, PRE_SECTION_KEY, SECTION_KEY, 
-    TITLE, PICS, PUBLISH_TIME, NEED_PAY, PRICE, WORLD_COUNT, SECTION_ID
+    TITLE, PICS, PUBLISH_TIME, NEED_PAY, PRICE, WORDCOUNT, SECTION_ID
   </sql>
   <sql id="Blob_Column_List" >
     CONTENT
@@ -94,7 +94,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from SECTION
+    from section
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -109,7 +109,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from SECTION
+    from section
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -118,27 +118,27 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.wyDemo.bean.SectionExample" >
-    delete from SECTION
+    delete from section
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.wyDemo.bean.Section" >
-    insert into SECTION (BOOK_ID, BOOK_KEY, CHAPTER_ID, 
+    insert into section (BOOK_ID, BOOK_KEY, CHAPTER_ID, 
       CHAPTER_KEY, PRE_SECTION_ID, PRE_SECTION_KEY, 
       SECTION_KEY, TITLE, PICS, 
       PUBLISH_TIME, NEED_PAY, PRICE, 
-      WORLD_COUNT, SECTION_ID, CONTENT
+      WORDCOUNT, SECTION_ID, CONTENT
       )
     values (#{bookId,jdbcType=VARCHAR}, #{bookKey,jdbcType=VARCHAR}, #{chapterId,jdbcType=VARCHAR}, 
       #{chapterKey,jdbcType=VARCHAR}, #{preSectionId,jdbcType=VARCHAR}, #{preSectionKey,jdbcType=VARCHAR}, 
       #{sectionKey,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{pics,jdbcType=VARCHAR}, 
       #{publishTime,jdbcType=INTEGER}, #{needPay,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
-      #{worldCount,jdbcType=INTEGER}, #{sectionId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      #{wordcount,jdbcType=INTEGER}, #{sectionId,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wyDemo.bean.Section" >
-    insert into SECTION
+    insert into section
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bookId != null" >
         BOOK_ID,
@@ -176,8 +176,8 @@
       <if test="price != null" >
         PRICE,
       </if>
-      <if test="worldCount != null" >
-        WORLD_COUNT,
+      <if test="wordcount != null" >
+        WORDCOUNT,
       </if>
       <if test="sectionId != null" >
         SECTION_ID,
@@ -223,11 +223,11 @@
       <if test="price != null" >
         #{price,jdbcType=INTEGER},
       </if>
-      <if test="worldCount != null" >
-        #{worldCount,jdbcType=INTEGER},
+      <if test="wordcount != null" >
+        #{wordcount,jdbcType=INTEGER},
       </if>
       <if test="sectionId != null" >
-        #{sectionId,jdbcType=INTEGER},
+        #{sectionId,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -235,13 +235,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.wyDemo.bean.SectionExample" resultType="java.lang.Integer" >
-    select count(*) from SECTION
+    select count(*) from section
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update SECTION
+    update section
     <set >
       <if test="record.bookId != null" >
         BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
@@ -279,11 +279,11 @@
       <if test="record.price != null" >
         PRICE = #{record.price,jdbcType=INTEGER},
       </if>
-      <if test="record.worldCount != null" >
-        WORLD_COUNT = #{record.worldCount,jdbcType=INTEGER},
+      <if test="record.wordcount != null" >
+        WORDCOUNT = #{record.wordcount,jdbcType=INTEGER},
       </if>
       <if test="record.sectionId != null" >
-        SECTION_ID = #{record.sectionId,jdbcType=INTEGER},
+        SECTION_ID = #{record.sectionId,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null" >
         CONTENT = #{record.content,jdbcType=LONGVARCHAR},
@@ -294,7 +294,7 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update SECTION
+    update section
     set BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
       BOOK_KEY = #{record.bookKey,jdbcType=VARCHAR},
       CHAPTER_ID = #{record.chapterId,jdbcType=VARCHAR},
@@ -307,15 +307,15 @@
       PUBLISH_TIME = #{record.publishTime,jdbcType=INTEGER},
       NEED_PAY = #{record.needPay,jdbcType=INTEGER},
       PRICE = #{record.price,jdbcType=INTEGER},
-      WORLD_COUNT = #{record.worldCount,jdbcType=INTEGER},
-      SECTION_ID = #{record.sectionId,jdbcType=INTEGER},
+      WORDCOUNT = #{record.wordcount,jdbcType=INTEGER},
+      SECTION_ID = #{record.sectionId,jdbcType=VARCHAR},
       CONTENT = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update SECTION
+    update section
     set BOOK_ID = #{record.bookId,jdbcType=VARCHAR},
       BOOK_KEY = #{record.bookKey,jdbcType=VARCHAR},
       CHAPTER_ID = #{record.chapterId,jdbcType=VARCHAR},
@@ -328,8 +328,8 @@
       PUBLISH_TIME = #{record.publishTime,jdbcType=INTEGER},
       NEED_PAY = #{record.needPay,jdbcType=INTEGER},
       PRICE = #{record.price,jdbcType=INTEGER},
-      WORLD_COUNT = #{record.worldCount,jdbcType=INTEGER},
-      SECTION_ID = #{record.sectionId,jdbcType=INTEGER}
+      WORDCOUNT = #{record.wordcount,jdbcType=INTEGER},
+      SECTION_ID = #{record.sectionId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
